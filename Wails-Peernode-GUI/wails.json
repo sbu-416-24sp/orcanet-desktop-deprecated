@@ -1,0 +1,11 @@
+{
+  "name": "Wails-Peernode-GUI",
+  "assetdir": "./frontend/dist",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "outputfilename": "Wails-Peernode-GUI",
+  "author": {
+    "name": "Adam Lipson",
+    "email": "40801946+Adamlip1334@users.noreply.github.com"
+  }
+}
