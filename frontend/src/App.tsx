@@ -1,56 +1,44 @@
-import HomePage from "./home/HomePage";
-import StorePage from "./store/StorePage";
-import MarketPage from "./market/MarketPage";
-import WalletPage from "./wallet/WalletPage";
-import SettingsPage from "./settings/SettingsPage";
-import Sidebar from "./sidebar/sidebar";
+import "./stylesheets/App.scss";
+import "bootstrap/dist/css/bootstrap.css";
 
-import { ThemeProvider } from "@/components/ui/ThemeProvider";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
-import "./App.css";
+import Menu from "./components/Menu";
+import DashboardPage from "./components/Dashboard/DashboardPage";
+import FileUploadPage from "./components/FileUploadPage";
+import PeerPage from "./components/PeerPage";
+import SettingPage from "./components/Setting/SettingPage";
+
+function LocationProvider({ children }: { children: React.ReactNode }) {
+  console.log(children);
+  return <AnimatePresence>{children}</AnimatePresence>;
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<FileUploadPage />} />
+      <Route path="/peer" element={<PeerPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/setting" element={<SettingPage />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <div id="App">
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/store" element={<StorePage />} />
-            <Route path="/market" element={<MarketPage />} />
-            <Route path="/wallet" element={<WalletPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Routes>
-        </Router>
-      </div>
-    </ThemeProvider>
+    <>
+      <BrowserRouter>
+        <Menu />
+        <LocationProvider>
+          <AnimatedRoutes />
+        </LocationProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
 export default App;
-
-const pageMap: { label: string; path: string }[] = [
-  { label: "Home", path: "/" },
-  { label: "Store", path: "/store" },
-  { label: "Market", path: "/market" },
-  { label: "Wallet", path: "/wallet" },
-  { label: "Settings", path: "/settings" },
-];
-
-const Navbar = () => {
-  return (
-    <Sidebar /> 
-  );
-};
-
-import { Button } from "@/components/ui/button";
-
-const NavLink = (props: { label: string; path: string }) => {
-  return (
-    <Link to={props.path}>
-      <Button>{props.label}</Button>
-    </Link>
-  );
-};
