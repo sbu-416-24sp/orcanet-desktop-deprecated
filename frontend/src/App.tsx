@@ -1,3 +1,4 @@
+import "./index.css";
 import "./stylesheets/App.scss";
 import "bootstrap/dist/css/bootstrap.css";
 
