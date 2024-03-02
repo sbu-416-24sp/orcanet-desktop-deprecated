@@ -9,10 +9,12 @@ Partial scss files must start with a underscore.
 @import "PageFileUpload";
 @import "PagePeer";
 @import "PageSetting";
+
 // Components import
-@import "searchBar";
-@import "timeBar";
-@import "header";
+
+// @import "searchBar";
+// @import "timeBar";
+// @import "header";
 // Tailwind import
 
 @mixin fullscreen {
