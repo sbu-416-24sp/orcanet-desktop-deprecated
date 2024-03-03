@@ -109,7 +109,8 @@ function PeersList() {
 export default function PeerPage() {
   return (
     <motion.div
-      className="content peer-page"
+      // className="content peer-page"
+      className="p-8 h-full w-full bg-blue-100 bg-opacity-50 overflow-hidden"
       initial="initial"
       animate="final"
       variants={routeVariants}
