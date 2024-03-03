@@ -1,24 +1,26 @@
 import Header from "../Header/Header";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 function AccessKeyGenerator() {
   return (
-    <div className="access-key-generator">
-      <h3>Access Key</h3>
-      <div className="generator">
-        <p>
+    <div>
+      <h3 className="pb-4">Access Key</h3>
+      <div className=" bg-white p-4 rounded-2xl ">
+        <p className="text-cyan-800 font-bold break-all m-0 pb-4">
           The OrcaNet Name System (ONNS) provides cryptographic addresses for
           publishing updates to content that is expected to change over time.
           This feature requires your node to be online at least once a day to
           ensure ONNS records are kept alive on the public DHT.
         </p>
-        <div className="key-box">
-          <input
+        <div className="flex items-center justify-between">
+          <Input
             type="text"
             className="access-key"
             defaultValue="CAESIKY9RkdcwVuPzyQPn2SX7CEJRIj87Y1Mxtm0S5ABQMvI"
             placeholder="Enter Access Key"
           />
-          <button>Generate</button>
+          <Button>Generate</Button>
         </div>
       </div>
     </div>
@@ -27,7 +29,7 @@ function AccessKeyGenerator() {
 
 export default function MainSetting() {
   return (
-    <div className="main-setting">
+    <div className="p-8 bg-blue-100 bg-opacity-50 h-full">
       <Header />
       <AccessKeyGenerator />
     </div>
