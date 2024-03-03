@@ -12,7 +12,7 @@ export default function DashboardPage() {
       animate="final"
       variants={routeVariants}
     >
-      <div className="grid grid-cols-1 md:grid-cols-7 overflow-y-auto scrollbar-none">
+      <div className="grid grid-cols-1 overflow-y-auto scrollbar-none h-full md:grid-cols-7 ">
         <div className="md:col-span-5">
           <Metric />
         </div>

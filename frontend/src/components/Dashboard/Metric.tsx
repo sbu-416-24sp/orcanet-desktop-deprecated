@@ -23,7 +23,7 @@ import Bandwidth from "./Bandwidth.tsx";
 
 export default function Metric() {
   return (
-    <div className="p-8 bg-blue-100 bg-opacity-50">
+    <div className="px-8 pt-8 bg-blue-100 bg-opacity-50 h-full">
       <Header />
       {/* <Graph
         className="bandwidth-graph"
