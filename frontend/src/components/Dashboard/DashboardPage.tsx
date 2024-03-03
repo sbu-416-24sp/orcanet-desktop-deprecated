@@ -7,13 +7,19 @@ import UserInfo from "./UserInfoPanel.tsx";
 export default function DashboardPage() {
   return (
     <motion.div
-      className="content dashboard-page"
+      // className="content dashboard-page"
       initial="initial"
       animate="final"
       variants={routeVariants}
     >
-      <Metric />
-      <UserInfo />
+      <div className="grid grid-cols-1 md:grid-cols-7 overflow-y-auto scrollbar-none">
+        <div className="md:col-span-5">
+          <Metric />
+        </div>
+        <div className="md:col-span-2">
+          <UserInfo />
+        </div>
+      </div>
     </motion.div>
   );
 }
