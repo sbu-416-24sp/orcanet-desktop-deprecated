@@ -26,8 +26,8 @@ interface TabProps {
 
 function Tab({ path, active, onClick, Icon, text }: TabProps) {
   return (
-    <NavLink to={path}>
-      <div className="tab" onClick={onClick}>
+    <NavLink className={"no-underline"} to={path}>
+      <div className="flex items-center" onClick={onClick}>
         <div>
           {active ? (
             <Icon color={iconColor} size={iconSize} />
@@ -35,7 +35,9 @@ function Tab({ path, active, onClick, Icon, text }: TabProps) {
             <Icon color={iconColor} size={iconSize} />
           )}
         </div>
-        <div className="tab-text">{text}</div>
+        <div className="font-bold text-white no-underline hover:underline pl-3">
+          {text}
+        </div>
       </div>
     </NavLink>
   );
@@ -72,7 +74,8 @@ function Tabs({
   ];
 
   return (
-    <div className="tabs">
+    // <div className="tabs">
+    <div className="py-8 px-4 flex flex-col gap-20 mt-16 ">
       {tabs.map((tab) => (
         <Tab
           key={tab.path}
@@ -91,7 +94,8 @@ export default function Menu() {
   const [active, setActive] = useState(window.location.pathname);
 
   return (
-    <div className="menu">
+    // <div className="menu">
+    <div className="flex flex-col  h-full bg-blue-900 bg-opacity-85 ">
       <NavLink to="/" onClick={() => setActive("/")}>
         <Logo fill="white" />
       </NavLink>

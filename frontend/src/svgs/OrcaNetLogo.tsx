@@ -1,6 +1,7 @@
 export default function Logo({ fill }: { fill: string }) {
   return (
-    <div className="logo">
+    //<div className="logo">
+    <div className="flex items-center mt-16 ml-11">
       <svg
         width="84"
         height="87"
