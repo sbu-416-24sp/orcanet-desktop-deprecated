@@ -20,7 +20,9 @@ function AccessKeyGenerator() {
             defaultValue="CAESIKY9RkdcwVuPzyQPn2SX7CEJRIj87Y1Mxtm0S5ABQMvI"
             placeholder="Enter Access Key"
           />
-          <Button>Generate</Button>
+          <Button className="ml-4 rounded-lg bg-sky-500 hover:bg-sky-700">
+            Generate
+          </Button>
         </div>
       </div>
     </div>

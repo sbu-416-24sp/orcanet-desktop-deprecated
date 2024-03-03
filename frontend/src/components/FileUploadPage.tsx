@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../helper/RouterAnimation";
+import { Button } from "@/components/ui/button";
 
 import Header from "./Header/Header";
 
@@ -7,11 +8,11 @@ function UploadStatus() {
   return (
     <div className="file-upload-header">
       <Header />
-      <div className="file-upload-title-btn">
+      <div className="flex items-center justify-between py-8">
         <h3>File Upload Status</h3>
-        <button className="import-btn px-2 py-1 rounded-lg bg-sky-500 hover:bg-sky-700">
+        <Button className="px-3 py-1 mr-1 rounded-lg bg-sky-500 hover:bg-sky-700">
           + Import
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -58,7 +59,8 @@ function FileList() {
 export default function FileUploadPage() {
   return (
     <motion.div
-      className="content file-upload-page"
+      // className="content file-upload-page"
+      className="p-8 h-full bg-blue-100 bg-opacity-50"
       initial="initial"
       animate="final"
       variants={routeVariants}
