@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
 import { useState, useEffect } from "react";
 import { Payment, columns } from "./columns";
+import { Button } from "@/components/ui/button";
 import { DataTable } from "./data-table";
+import QRCode from "react-qr-code";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "../Header/Header";
 
 async function getData(): Promise<Payment[]> {
@@ -10,7 +14,7 @@ async function getData(): Promise<Payment[]> {
   return [
     {
       id: "59a53ee428a643e940546c5ccfc5663e",
-      amount: 0.5523342,
+      amount: -0.5523342,
       status: "pending",
     },
     {
@@ -20,7 +24,7 @@ async function getData(): Promise<Payment[]> {
     },
     {
       id: "061b96f36e163ef82de2feefe7d7aaba",
-      amount: 0.8311008,
+      amount: -0.8311008,
       status: "processing",
     },
     {
@@ -53,11 +57,29 @@ export default function DemoPage() {
     >
       <div>
         <Header />
-        <div className="container mx-auto py-10">
+        <Card className="container ">
+          <CardHeader>
+            <CardTitle>Balance: 1024.576</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid justify-items-center">
+              <QRCode value={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} />
+              <p className="mt-4">
+                12D3KooWM1J3AZKnEvVtEVjwFka2Z2Z9EZo5XVzUoyrAofWRUUWK
+              </p>
+              <div>
+                <Button className="">Send</Button>
+                <Button className="ml-4">Request</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <div className="container mx-auto mt-3">
+          <p>Transactions</p>
           {data.length > 0 ? (
             <DataTable columns={columns} data={data} />
           ) : (
-            <div>Loading...</div>
+            <div>Loading Transactions...</div>
           )}
         </div>
       </div>
