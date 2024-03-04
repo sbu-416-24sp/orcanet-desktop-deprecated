@@ -3,6 +3,7 @@ import "./stylesheets/App.scss";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 import { AnimatePresence } from "framer-motion";
 
 import Menu from "./components/Menu";
@@ -15,7 +16,6 @@ import HelpPage from "./components/HelpPage/HelpPage";
 import WalletPage from "./components/Wallet/WalletPage";
 
 function LocationProvider({ children }: { children: React.ReactNode }) {
-  console.log(children);
   return <AnimatePresence>{children}</AnimatePresence>;
 }
 
@@ -36,15 +36,30 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  const path : string = window.location.pathname;
+  
+  let layout : string = "grid grid-cols-2",
+    style : React.CSSProperties = {
+      gridTemplateColumns: "185px 1fr",
+    };
+
+  if(path === "/peer") {
+    layout = "flex flex-col";
+    style = {};
+  }
+
   return (
-    <>
+    <div
+      className={`${layout} font-sans h-full w-full m-0 p-0`}
+      style={style}
+    >
       <BrowserRouter>
-        <Menu />
+        <Menu/>
         <LocationProvider>
           <AnimatedRoutes />
         </LocationProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

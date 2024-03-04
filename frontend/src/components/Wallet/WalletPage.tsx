@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { columns } from "./columns";
 import IPayment from "@/interfaces/IPayment";
 import { Button } from "@/components/ui/button";
-import { DataTable } from "./data-table";
+import { DataTable } from "./DataTable";
 import QRCode from "react-qr-code";
 import OrcaCoin from "../../svgs/orcaCoin.svg";
 import { WalletData } from "./WalletData";
@@ -37,7 +37,7 @@ export default function DemoPage() {
 
   return (
     <motion.div
-      className="p-8 h-full bg-blue-100 bg-opacity-50"
+      className="p-8 h-full bg-blue-100 bg-opacity-50 overflow-auto"
       initial="initial"
       animate="final"
       variants={routeVariants}

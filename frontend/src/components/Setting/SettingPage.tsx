@@ -7,7 +7,7 @@ import OrcaCoinConnection from "./OrcaCoinConnection";
 export default function SettingPage() {
   return (
     <motion.div
-      // className="content setting"
+      className="overflow-auto"
       initial="initial"
       animate="final"
       variants={routeVariants}

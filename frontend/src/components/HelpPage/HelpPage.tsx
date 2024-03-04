@@ -4,7 +4,7 @@ import { routeVariants } from "../../helper/RouterAnimation";
 export default function helpPage() {
   return (
     <motion.div
-      className="p-8 bg-blue-100 bg-opacity-50 h-full"
+      className="p-8 bg-blue-100 bg-opacity-50 h-full overflow-auto"
       initial="initial"
       animate="final"
       variants={routeVariants}
