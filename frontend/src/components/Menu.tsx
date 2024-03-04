@@ -11,6 +11,10 @@ import {
   CloudArrowUpFill,
   DatabaseFillAdd,
   GearFill,
+  Cart,
+  CartFill,
+  Wallet,
+  WalletFill,
 } from "react-bootstrap-icons";
 
 const iconColor = "white";
@@ -67,6 +71,16 @@ function Tabs({
       text: "Dashboard",
     },
     {
+      path: "/market",
+      Icon: active === "/market" ? CartFill : Cart,
+      text: "Market",
+    },
+    {
+      path: "/wallet",
+      Icon: active === "/wallet" ? WalletFill : Wallet,
+      text: "Wallet",
+    },
+    {
       path: "/setting",
       Icon: active === "/setting" ? GearFill : Gear,
       text: "Setting",
@@ -75,7 +89,7 @@ function Tabs({
 
   return (
     // <div className="tabs">
-    <div className="py-8 px-4 flex flex-col gap-20 mt-16 ">
+    <div className="pt-2 px-4 flex flex-col gap-20 mt-16 ">
       {tabs.map((tab) => (
         <Tab
           key={tab.path}

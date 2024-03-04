@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
 // import { Button } from "@/components/ui/button";
+import { data } from "./FileData.tsx";
+import { columns } from "./FileTableType.tsx";
 
 import Header from "../Header/Header";
 import { FileDataTable } from "./FileDataTable.tsx";
@@ -68,7 +70,7 @@ export default function FileUploadPage() {
     >
       <UploadStatus />
       {/* <FileList /> */}
-      <FileDataTable />
+      <FileDataTable columns={columns} data={data} />
     </motion.div>
   );
 }
