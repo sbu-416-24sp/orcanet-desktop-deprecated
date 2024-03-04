@@ -32,8 +32,6 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    // <div className="rounded-2xl border mt-8 ">
-
     <div className="rounded-md border bg-white">
       <Table>
         <TableHeader>

@@ -1,6 +1,6 @@
 import IPayment from "@/interfaces/IPayment";
 
-export const WalletData : IPayment[] = [
+export const WalletData: IPayment[] = [
   {
     id: "59a53ee428a643e940546c5ccfc5663e",
     amount: -0.5523342,
