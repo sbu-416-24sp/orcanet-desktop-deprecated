@@ -6,7 +6,13 @@ import { Button } from "@/components/ui/button";
 import { DataTable } from "./data-table";
 import QRCode from "react-qr-code";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import Header from "../Header/Header";
 
 async function getData(): Promise<Payment[]> {
@@ -59,7 +65,8 @@ export default function DemoPage() {
         <Header />
         <Card className="container ">
           <CardHeader>
-            <CardTitle>Balance: 1024.576</CardTitle>
+            <CardDescription>Balance</CardDescription>
+            <CardTitle>1024.576</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid justify-items-center">

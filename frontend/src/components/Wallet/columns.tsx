@@ -24,7 +24,8 @@ export const columns: ColumnDef<Payment>[] = [
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
-      return <div className="text-right font-medium">{amount}</div>;
+      const color = amount > 0 ? "text-green-500" : "text-red-500";
+      return <div className={`text-right font-medium ${color}`}>{amount}</div>;
     },
   },
 ];
