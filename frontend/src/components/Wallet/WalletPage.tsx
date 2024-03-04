@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
 import { useState, useEffect } from "react";
-import { Payment, columns } from "./columns";
+import { columns } from "./columns";
+import IPayment from "@/interfaces/IPayment";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "./data-table";
 import QRCode from "react-qr-code";
@@ -9,7 +10,7 @@ import QRCode from "react-qr-code";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "../Header/Header";
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<IPayment[]> {
   // Fetch data from your API here.
   return [
     {
@@ -37,7 +38,7 @@ async function getData(): Promise<Payment[]> {
 }
 
 export default function DemoPage() {
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<IPayment[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

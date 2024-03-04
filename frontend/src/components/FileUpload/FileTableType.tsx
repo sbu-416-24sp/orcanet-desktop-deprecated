@@ -1,6 +1,8 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
+import IFileUpload from "@/interfaces/IFileUpload";
+
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
@@ -12,15 +14,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Upload = {
-  cid: string;
-  size: number;
-  status: "pending" | "processing" | "success" | "failed";
-  name: string;
-  peers: number;
-};
+// export type IFileUpload = {
+//   cid: string;
+//   size: number;
+//   status: "pending" | "processing" | "success" | "failed";
+//   name: string;
+//   peers: number;
+// };
 
-export const columns: ColumnDef<Upload>[] = [
+export const columns: ColumnDef<IFileUpload>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -29,7 +31,9 @@ export const columns: ColumnDef<Upload>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value: boolean) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value: boolean) =>
+          table.toggleAllPageRowsSelected(!!value)
+        }
         aria-label="Select all"
       />
     ),

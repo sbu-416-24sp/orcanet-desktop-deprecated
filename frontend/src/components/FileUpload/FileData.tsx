@@ -1,6 +1,6 @@
-import { Upload } from "./FileTableType";
+import IFileUpload from "@/interfaces/IFileUpload";
 
-export const data: Upload[] = [
+export const data: IFileUpload[] = [
   {
     cid: "12D3KooWM1J3AZKnEvVtEVjwFka2Z2Z9EZo5XVzUoyrAofWRUUWK",
     size: 316,

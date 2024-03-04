@@ -1,5 +1,5 @@
-import { File } from "./MarketTableType";
-const marketData: File[] = [
+import IMarketFiles from "@/interfaces/IMarketFiles";
+const marketData: IMarketFiles[] = [
   {
     cid: "QmSnuWmxptJZdLJpKRarxBMS2Ju2oANVrgbr2xWbie9b2D",
     name: "demo1",

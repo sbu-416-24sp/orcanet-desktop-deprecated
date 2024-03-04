@@ -2,6 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import IMarketFiles from "@/interfaces/IMarketFiles";
 
 import {
   DropdownMenu,
@@ -15,13 +16,13 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type File = {
-  cid: string;
-  name: string;
-  links: number;
-};
+// export type IMarketFiles = {
+//   cid: string;
+//   name: string;
+//   links: number;
+// };
 
-export const columns: ColumnDef<File>[] = [
+export const columns: ColumnDef<IMarketFiles>[] = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
