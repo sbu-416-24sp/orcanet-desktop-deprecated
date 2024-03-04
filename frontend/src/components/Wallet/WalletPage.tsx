@@ -44,7 +44,7 @@ export default function DemoPage() {
     >
       <div>
         <Header />
-        <Card className="container ">
+        <Card className="container">
           <CardHeader>
             <CardDescription className="text-base font-medium">
               Balance
