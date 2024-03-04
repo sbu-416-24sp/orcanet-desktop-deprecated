@@ -116,7 +116,7 @@ export default function PeerPage() {
     if (globeRef.current) {
       globeRef.current.controls().autoRotate = true;
       globeRef.current.controls().autoRotateSpeed = 1;
-      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 1.75 }); 
+      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 1.85 }); 
     }
   }, []);
 
