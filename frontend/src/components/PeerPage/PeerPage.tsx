@@ -136,6 +136,7 @@ export default function PeerPage() {
         <ReactGlobe
           ref={globeRef}
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+          backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
           animateIn={true}
         />
       </div>
