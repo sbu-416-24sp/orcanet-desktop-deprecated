@@ -3,7 +3,7 @@ import TimeBar from "./TimeBar.tsx";
 
 export default function Header() {
   return (
-    <div className="flex justify-between items-center mb-12">
+    <div className="flex justify-between items-center mb-3">
       <SearchBar />
       <TimeBar />
     </div>

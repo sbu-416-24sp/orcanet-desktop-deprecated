@@ -89,7 +89,7 @@ function Tabs({
 
   return (
     // <div className="tabs">
-    <div className="pt-2 px-4 flex flex-col gap-20 mt-16 ">
+    <div className="pt-1 px-3 flex flex-col gap-4 mt-8">
       {tabs.map((tab) => (
         <Tab
           key={tab.path}
@@ -109,7 +109,7 @@ export default function Menu() {
 
   return (
     // <div className="menu">
-    <div className="flex flex-col  h-full bg-blue-900 bg-opacity-85 ">
+    <div className="flex flex-col h-full bg-blue-900 bg-opacity-85 ">
       <NavLink to="/help" onClick={() => setActive("/help")}>
         <Logo fill="white" />
       </NavLink>
