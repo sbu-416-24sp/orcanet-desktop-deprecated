@@ -1,27 +1,65 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
-import { Button } from "@/components/ui/button";
-
+import { useState, useEffect } from "react";
+import { Payment, columns } from "./columns";
+import { DataTable } from "./data-table";
 import Header from "../Header/Header";
 
-export default function WalletPage() {
+async function getData(): Promise<Payment[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: "59a53ee428a643e940546c5ccfc5663e",
+      amount: 0.5523342,
+      status: "pending",
+    },
+    {
+      id: "f0623b42ea2d521b945a80b014f5694b",
+      amount: 0.000012323,
+      status: "failed",
+    },
+    {
+      id: "061b96f36e163ef82de2feefe7d7aaba",
+      amount: 0.8311008,
+      status: "processing",
+    },
+    {
+      id: "bcaeff20734041e27098eb5138b3003a",
+      amount: 0.00432,
+      status: "success",
+    },
+    // ...
+  ];
+}
+
+export default function DemoPage() {
+  const [data, setData] = useState<Payment[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData();
+      setData(result);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <motion.div
-      // className="content file-upload-page"
       className="p-8 h-full bg-blue-100 bg-opacity-50"
       initial="initial"
       animate="final"
       variants={routeVariants}
     >
-      <Header />
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Bitcoin Wallet</h1>
-        <p className="text-gray-500 mb-8">
-          Manage your Bitcoin transactions and balances.
-        </p>
-        <Button className="mb-4">Send Bitcoin</Button>
-        <Button className="mb-4">Receive Bitcoin</Button>
-        <Button className="mb-4">View Transaction History</Button>
+      <div>
+        <Header />
+        <div className="container mx-auto py-10">
+          {data.length > 0 ? (
+            <DataTable columns={columns} data={data} />
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
       </div>
     </motion.div>
   );
