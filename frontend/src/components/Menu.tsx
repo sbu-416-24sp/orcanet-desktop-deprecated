@@ -11,6 +11,8 @@ import {
   CloudArrowUpFill,
   DatabaseFillAdd,
   GearFill,
+  Wallet,
+  WalletFill,
 } from "react-bootstrap-icons";
 
 const iconColor = "white";
@@ -65,6 +67,11 @@ function Tabs({
       path: "/dashboard",
       Icon: active === "/dashboard" ? PersonFillGear : PersonGear,
       text: "Dashboard",
+    },
+    {
+      path: "/Wallet",
+      Icon: active === "/Wallet" ? WalletFill : Wallet,
+      text: "Wallet",
     },
     {
       path: "/setting",
