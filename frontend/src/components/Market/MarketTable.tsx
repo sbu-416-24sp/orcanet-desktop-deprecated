@@ -82,7 +82,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
         <TimeBar />
       </div>
       {/* <h3 className="pt-8">Market</h3> */}
-      <div className="rounded-md border mt-16">
+      <div className="rounded-2xl border mt-8 bg-white">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -132,7 +132,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 pt-4">
         <Button
           variant="outline"
           size="sm"
