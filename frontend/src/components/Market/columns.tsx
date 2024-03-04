@@ -3,8 +3,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import { Checkbox } from "@/components/ui/checkbox";
-
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Seed = {
