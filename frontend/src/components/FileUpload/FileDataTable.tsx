@@ -109,9 +109,19 @@ export const columns: ColumnDef<Upload>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize ml-6">{row.getValue("status")}</div>
     ),
   },
   {
@@ -127,26 +137,48 @@ export const columns: ColumnDef<Upload>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase ml-4">{row.getValue("name")}</div>
+    ),
   },
   {
     accessorKey: "size",
-    header: () => <div className="">Size</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Size
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const size = parseFloat(row.getValue("size"));
 
       const formatted: string = size + " MB";
 
-      return <div className="font-medium">{formatted}</div>;
+      return <div className="font-medium ml-4">{formatted}</div>;
     },
   },
   {
     accessorKey: "peers",
-    header: () => <div className="">Peers</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Peers
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const peers = parseFloat(row.getValue("peers"));
 
-      return <div className="font-medium">{peers}</div>;
+      return <div className="font-medium ml-8">{peers}</div>;
     },
   },
   {
