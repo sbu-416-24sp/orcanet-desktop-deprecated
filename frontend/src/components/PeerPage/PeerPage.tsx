@@ -115,8 +115,8 @@ export default function PeerPage() {
   useEffect(() => {
     if (globeRef.current) {
       globeRef.current.controls().autoRotate = true;
-      globeRef.current.controls().autoRotateSpeed = 0.75;
-      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 2 }); 
+      globeRef.current.controls().autoRotateSpeed = 1;
+      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 1.75 }); 
     }
   }, []);
 
