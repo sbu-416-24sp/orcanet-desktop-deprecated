@@ -7,7 +7,7 @@ import { AnimatePresence } from "framer-motion";
 
 import Menu from "./components/Menu";
 import DashboardPage from "./components/Dashboard/DashboardPage";
-import FileUploadPage from "./components/FileUploadPage";
+import FileUploadPage from "./components/FileUpload/FileUploadPage";
 import PeerPage from "./components/PeerPage";
 import SettingPage from "./components/Setting/SettingPage";
 
