@@ -1,6 +1,14 @@
+import { motion } from "framer-motion";
+import { routeVariants } from "../../helper/RouterAnimation";
+
 export default function helpPage() {
   return (
-    <div className="p-8 bg-blue-100 bg-opacity-50 h-full">
+    <motion.div
+      className="p-8 bg-blue-100 bg-opacity-50 h-full"
+      initial="initial"
+      animate="final"
+      variants={routeVariants}
+    >
       <h1 className="flex items-center justify-center pt-16 text-cyan-800 font-bold break-all">
         WELCOME TO HELP PAGE
       </h1>
@@ -40,6 +48,6 @@ export default function helpPage() {
         to you and your chosen peers. We employ robust encryption techniques to
         safeguard your information at all times.
       </p>
-    </div>
+    </motion.div>
   );
 }
