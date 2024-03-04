@@ -1,6 +1,8 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
+import IFileUpload from "@/interfaces/IFileUpload";
+
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
@@ -12,15 +14,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Upload = {
-  cid: string;
-  size: number;
-  status: "pending" | "processing" | "success" | "failed";
-  name: string;
-  peers: number;
-};
+// export type IFileUpload = {
+//   cid: string;
+//   size: number;
+//   status: "pending" | "processing" | "success" | "failed";
+//   name: string;
+//   peers: number;
+// };
 
-export const columns: ColumnDef<Upload>[] = [
+export const columns: ColumnDef<IFileUpload>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -29,37 +31,23 @@ export const columns: ColumnDef<Upload>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value: boolean) =>
+          table.toggleAllPageRowsSelected(!!value)
+        }
         aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        onCheckedChange={(value: boolean) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
     ),
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "status",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Status
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize ml-6">{row.getValue("status")}</div>
-    ),
-  },
+
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -116,6 +104,23 @@ export const columns: ColumnDef<Upload>[] = [
 
       return <div className="font-medium ml-8">{peers}</div>;
     },
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize ml-6">{row.getValue("status")}</div>
+    ),
   },
   {
     id: "actions",

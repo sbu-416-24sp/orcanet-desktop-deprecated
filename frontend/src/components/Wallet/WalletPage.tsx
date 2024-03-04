@@ -1,43 +1,30 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
 import { useState, useEffect } from "react";
-import { Payment, columns } from "./columns";
+import { columns } from "./columns";
+import IPayment from "@/interfaces/IPayment";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "./data-table";
 import QRCode from "react-qr-code";
+import OrcaCoin from "../../svgs/orcaCoin.svg";
+import { WalletData } from "./WalletData";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import Header from "../Header/Header";
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<IPayment[]> {
   // Fetch data from your API here.
-  return [
-    {
-      id: "59a53ee428a643e940546c5ccfc5663e",
-      amount: -0.5523342,
-      status: "pending",
-    },
-    {
-      id: "f0623b42ea2d521b945a80b014f5694b",
-      amount: 0.000012323,
-      status: "failed",
-    },
-    {
-      id: "061b96f36e163ef82de2feefe7d7aaba",
-      amount: -0.8311008,
-      status: "processing",
-    },
-    {
-      id: "bcaeff20734041e27098eb5138b3003a",
-      amount: 0.00432,
-      status: "success",
-    },
-    // ...
-  ];
+  return WalletData;
 }
 
 export default function DemoPage() {
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<IPayment[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,9 +44,15 @@ export default function DemoPage() {
     >
       <div>
         <Header />
-        <Card className="container ">
+        <Card className="container">
           <CardHeader>
-            <CardTitle>Balance: 1024.576</CardTitle>
+            <CardDescription className="text-base font-medium">
+              Balance
+            </CardDescription>
+            <CardTitle className="flex justify-items-center">
+              <img src={OrcaCoin} alt="Orca Coin" className="mr-2 h-10" />
+              <div className="text-4xl font-bold">1024.576</div>
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid justify-items-center">
