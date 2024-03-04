@@ -1,8 +1,9 @@
-export default function Logo({ fill }: { fill: string }) {
+export default function Logo({ fill, active }: { fill: string, active : string}) {
   return (
     //<div className="logo">
-    <div className="flex items-center mt-16 ml-11">
+    <div className={`flex items-center ${active !== "/peer" ? "mt-5 mb-3" : "ml-2 mt-1"}`}>
       <svg
+        className={active === "/peer" ? "h-20 w-20" : ""}
         width="84"
         height="87"
         viewBox="0 0 84 87"

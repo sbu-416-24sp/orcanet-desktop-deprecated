@@ -2,6 +2,7 @@ import Logo from "../svgs/OrcaNetLogo.tsx";
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+
 import {
   PersonGear,
   CloudArrowUp,
@@ -18,7 +19,7 @@ import {
 } from "react-bootstrap-icons";
 
 const iconColor = "white";
-const iconSize = 38;
+let iconSize = 38;
 
 interface TabProps {
   path: string;
@@ -58,7 +59,7 @@ function Tabs({
     {
       path: "/",
       Icon: active === "/" ? CloudArrowUpFill : CloudArrowUp,
-      text: "File Upload",
+      text: "Files",
     },
     {
       path: "/peer",
@@ -89,7 +90,11 @@ function Tabs({
 
   return (
     // <div className="tabs">
-    <div className="pt-2 px-4 flex flex-col gap-10 mt-3 ">
+    <div
+      className={`pt-2 px-4 flex gap-10 mt-3 ${
+        active !== "/peer" ? "flex-col" : ""
+      }`}
+    >
       {tabs.map((tab) => (
         <Tab
           key={tab.path}
@@ -107,11 +112,19 @@ function Tabs({
 export default function Menu() {
   const [active, setActive] = useState(window.location.pathname);
 
+  let layout = "flex-col h-full bg-blue-900 bg-opacity-85 items-center";
+
+  if (active === "/peer") {
+    layout =
+      "w-full bg-black-900 bg-opacity-85 z-50 absolute justify-between p-2";
+    iconSize = 25;
+  }
+
   return (
     // <div className="menu">
-    <div className="flex flex-col  h-full bg-blue-900 bg-opacity-85 ">
+    <div className={`flex ${layout}`}>
       <NavLink to="/help" onClick={() => setActive("/help")}>
-        <Logo fill="white"/>
+        <Logo fill="white" active={active} />
       </NavLink>
       <Tabs active={active} setActive={setActive} />
     </div>

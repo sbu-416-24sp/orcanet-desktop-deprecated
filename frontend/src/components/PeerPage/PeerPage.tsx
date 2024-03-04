@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
-import ReactGlobe from "react-globe";
+import ReactGlobe, { GlobeMethods } from "react-globe.gl";
+import { useEffect, useRef } from "react";
 
 // import { MapContainer, TileLayer, Popup, Circle } from "react-leaflet";
 // import "leaflet/dist/leaflet.css";
@@ -109,10 +110,20 @@ import ReactGlobe from "react-globe";
 // }
 
 export default function PeerPage() {
+  const globeRef = useRef<GlobeMethods>();
+
+  useEffect(() => {
+    if (globeRef.current) {
+      globeRef.current.controls().autoRotate = true;
+      globeRef.current.controls().autoRotateSpeed = 0.75;
+      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 2 }); 
+    }
+  }, []);
+
   return (
     <motion.div
       // className="content peer-page"
-      className="p-8 h-full w-full bg-blue-100 bg-opacity-50 overflow-auto"
+      className="h-full w-full bg-blue-100 bg-opacity-50"
       initial="initial"
       animate="final"
       variants={routeVariants}
@@ -120,11 +131,14 @@ export default function PeerPage() {
       {/* <Header />
       <MapContent />
       <PeersList /> */}
-      <ReactGlobe
-        height="100%"
-        globeTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/globe_dark.jpg"
-        width="100%"
-      />
+
+      <div className="globe h-full w-full">
+        <ReactGlobe
+          ref={globeRef}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+          animateIn={true}
+        />
+      </div>
     </motion.div>
   );
 }
