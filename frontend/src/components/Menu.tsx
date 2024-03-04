@@ -13,6 +13,8 @@ import {
   GearFill,
   Wallet,
   WalletFill,
+  Cart,
+  CartFill,
 } from "react-bootstrap-icons";
 
 const iconColor = "white";
@@ -69,8 +71,13 @@ function Tabs({
       text: "Dashboard",
     },
     {
-      path: "/Wallet",
-      Icon: active === "/Wallet" ? WalletFill : Wallet,
+      path: "/market",
+      Icon: active === "/market" ? CartFill : Cart,
+      text: "Market",
+    },
+    {
+      path: "/wallet",
+      Icon: active === "/wallet" ? WalletFill : Wallet,
       text: "Wallet",
     },
     {
@@ -82,7 +89,7 @@ function Tabs({
 
   return (
     // <div className="tabs">
-    <div className="py-8 px-4 flex flex-col gap-20 mt-16 ">
+    <div className="pt-2 px-4 flex flex-col gap-20 mt-16 ">
       {tabs.map((tab) => (
         <Tab
           key={tab.path}
@@ -103,7 +110,7 @@ export default function Menu() {
   return (
     // <div className="menu">
     <div className="flex flex-col  h-full bg-blue-900 bg-opacity-85 ">
-      <NavLink to="/" onClick={() => setActive("/")}>
+      <NavLink to="/help" onClick={() => setActive("/help")}>
         <Logo fill="white" />
       </NavLink>
       <Tabs active={active} setActive={setActive} />

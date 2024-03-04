@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { routeVariants } from "../helper/RouterAnimation";
+import { routeVariants } from "../../helper/RouterAnimation";
 import { MapContainer, TileLayer, Popup, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import Header from "./Header/Header";
+import Header from "../Header/Header";
 
 function MapContent() {
   return (

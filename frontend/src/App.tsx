@@ -7,9 +7,11 @@ import { AnimatePresence } from "framer-motion";
 
 import Menu from "./components/Menu";
 import DashboardPage from "./components/Dashboard/DashboardPage";
-import FileUploadPage from "./components/FileUploadPage";
-import PeerPage from "./components/PeerPage";
+import FileUploadPage from "./components/FileUpload/FileUploadPage";
+import PeerPage from "./components/PeerPage/PeerPage";
 import SettingPage from "./components/Setting/SettingPage";
+import MarketPage from "./components/Market/MarketPage";
+import HelpPage from "./components/HelpPage/HelpPage";
 import WalletPage from "./components/Wallet/WalletPage";
 
 function LocationProvider({ children }: { children: React.ReactNode }) {
@@ -27,6 +29,9 @@ function AnimatedRoutes() {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/Wallet" element={<WalletPage />} />
       <Route path="/setting" element={<SettingPage />} />
+      <Route path="/market" element={<MarketPage />} />
+      <Route path="/help" element={<HelpPage />} />
+      {/* <Route path="/wallet" element={<MarketPage />} /> */}
     </Routes>
   );
 }
