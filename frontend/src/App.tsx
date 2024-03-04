@@ -31,7 +31,6 @@ function AnimatedRoutes() {
       <Route path="/setting" element={<SettingPage />} />
       <Route path="/market" element={<MarketPage />} />
       <Route path="/help" element={<HelpPage />} />
-      {/* <Route path="/wallet" element={<MarketPage />} /> */}
     </Routes>
   );
 }

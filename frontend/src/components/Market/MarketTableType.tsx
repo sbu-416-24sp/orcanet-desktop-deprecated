@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Seed = {
-  ipAddress: string;
-  region: string;
-  price: number;
+export type File = {
+  cid: string;
+  name: string;
+  links: number;
 };
 
-export const columns: ColumnDef<Seed>[] = [
+export const columns: ColumnDef<File>[] = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
@@ -33,48 +33,48 @@ export const columns: ColumnDef<Seed>[] = [
   //   ),
   // },
   {
-    accessorKey: "ipAddress",
+    accessorKey: "cid",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          IP Address
+          CID
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="ml-6">{row.getValue("ipAddress")}</div>,
+    cell: ({ row }) => <div className="ml-6">{row.getValue("cid")}</div>,
   },
   {
-    accessorKey: "region",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Region
+          Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="ml-6">{row.getValue("region")}</div>,
+    cell: ({ row }) => <div className="ml-6">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "price",
+    accessorKey: "links",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Price
+          Links
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="ml-6">{row.getValue("price")}</div>,
+    cell: ({ row }) => <div className="ml-6">{row.getValue("links")}</div>,
   },
 ];

@@ -69,12 +69,10 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
             type="text"
             // placeholder="Search File/CID"
             className="focus:outline-none px-8 rounded-3xl"
-            placeholder="Filter regions..."
-            value={
-              (table.getColumn("region")?.getFilterValue() as string) ?? ""
-            }
+            placeholder="Filter Name..."
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn("region")?.setFilterValue(event.target.value)
+              table.getColumn("name")?.setFilterValue(event.target.value)
             }
             // className="max-w-sm inline"
           />
