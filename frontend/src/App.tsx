@@ -11,6 +11,7 @@ import FileUploadPage from "./components/FileUpload/FileUploadPage";
 import PeerPage from "./components/PeerPage/PeerPage";
 import SettingPage from "./components/Setting/SettingPage";
 import MarketPage from "./components/Market/MarketPage";
+import HelpPage from "./components/HelpPage/HelpPage";
 
 function LocationProvider({ children }: { children: React.ReactNode }) {
   console.log(children);
@@ -27,6 +28,7 @@ function AnimatedRoutes() {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/setting" element={<SettingPage />} />
       <Route path="/market" element={<MarketPage />} />
+      <Route path="/help" element={<HelpPage />} />
       {/* <Route path="/wallet" element={<MarketPage />} /> */}
     </Routes>
   );

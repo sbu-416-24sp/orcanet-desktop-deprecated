@@ -110,7 +110,7 @@ export default function Menu() {
   return (
     // <div className="menu">
     <div className="flex flex-col  h-full bg-blue-900 bg-opacity-85 ">
-      <NavLink to="/" onClick={() => setActive("/")}>
+      <NavLink to="/help" onClick={() => setActive("/help")}>
         <Logo fill="white" />
       </NavLink>
       <Tabs active={active} setActive={setActive} />
