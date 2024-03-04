@@ -7,7 +7,7 @@ import UserInfo from "./UserInfoPanel.tsx";
 export default function DashboardPage() {
   return (
     <motion.div
-      // className="content dashboard-page"
+      className="overflow-auto"
       initial="initial"
       animate="final"
       variants={routeVariants}

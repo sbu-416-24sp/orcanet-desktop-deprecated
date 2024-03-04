@@ -63,7 +63,7 @@ export default function FileUploadPage() {
   return (
     <motion.div
       // className="content file-upload-page"
-      className="p-8 h-full bg-blue-100 bg-opacity-50"
+      className="p-8 h-full bg-blue-100 bg-opacity-50 overflow-auto"
       initial="initial"
       animate="final"
       variants={routeVariants}
