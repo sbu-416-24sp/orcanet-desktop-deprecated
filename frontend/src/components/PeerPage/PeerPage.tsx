@@ -1,20 +1,8 @@
 import { motion } from "framer-motion";
 import { routeVariants } from "../../helper/RouterAnimation";
 import ReactGlobe, { GlobeMethods } from "react-globe.gl";
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
-
-function useWindowSize() {
-  const [size, setSize] = useState(0);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize(window.innerWidth);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
+import {useEffect, useRef } from "react";
+import { useWindowSize } from "../../helper/CustomHooks";
 
 export default function PeerPage() {
   const globeRef = useRef<GlobeMethods>(), width = useWindowSize();
