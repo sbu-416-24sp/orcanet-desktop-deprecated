@@ -10,14 +10,39 @@ import { columns } from "./PeerColumns";
 import { ChevronDoubleUp, ChevronDoubleDown } from "react-bootstrap-icons";
 import SpaceBackground from "../../images/space-bg.jpg";
 
+function TableSwitch() {
+
+    const [open, setOpen]: [
+      boolean,
+      React.Dispatch<React.SetStateAction<boolean>>
+    ] = useState(false);
+
+  return (
+    <>
+      <Button
+        variant="outline"
+        className="animate__animated animate__rollIn rounded-full h-16 w-16 absolute bottom-16 right-16 hover:bg-gray-800 hover:text-white transition durantion-1000"
+        onClick={() => setOpen(!open)}
+      >
+        {!open ? <ChevronDoubleUp /> : <ChevronDoubleDown />}
+      </Button>
+
+      {open && (
+        <DataTable
+          style={
+            "animate__animated animate__fadeInUp bg-neutral-900 text-white w-3/4 absolute bottom-16 border-black overflow-auto max-h-80 no-scrollbar"
+          }
+          columns={columns}
+          data={peerData}
+        />
+      )}
+    </>
+  );
+}
+
 export default function PeerPage() {
   const globeRef = useRef<GlobeMethods>(),
     [width, height]: number[] = useWindowSize();
-
-  const [open, setOpen]: [
-    boolean,
-    React.Dispatch<React.SetStateAction<boolean>>
-  ] = useState(false);
 
   useEffect(() => {
     if (globeRef.current) {
@@ -58,23 +83,7 @@ export default function PeerPage() {
         labelColor={() => "#FFFF00"}
       />
 
-      <Button
-        variant="outline"
-        className="animate__animated animate__rollIn rounded-full h-16 w-16 absolute bottom-16 right-16 hover:bg-gray-800 hover:text-white transition durantion-1000"
-        onClick={() => setOpen(!open)}
-      >
-        {!open ? <ChevronDoubleUp /> : <ChevronDoubleDown />}
-      </Button>
-
-      {open && (
-        <DataTable
-          style={
-            "animate__animated animate__fadeInUp bg-neutral-900 text-white w-3/4 absolute bottom-16 border-black overflow-auto max-h-80 no-scrollbar"
-          }
-          columns={columns}
-          data={peerData}
-        />
-      )}
+      <TableSwitch />
     </motion.div>
   );
 }
