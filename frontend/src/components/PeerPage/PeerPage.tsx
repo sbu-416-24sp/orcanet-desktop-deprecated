@@ -37,7 +37,7 @@ export default function PeerPage() {
       <ReactGlobe
         ref={globeRef}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+        backgroundImageUrl="https://th.bing.com/th/id/R.bb387e5a1296d1cd048540c23b5633c5?rik=qoZnSIkhyOWbDA&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fBMrmUGk.jpg&ehk=6bVNzCHTgDVHpMvKIvEX167SUJl%2fq72pJPpDIdSw8Ug%3d&risl=&pid=ImgRaw&r=0"
         animateIn={true}
         width={width}
         height={height}
