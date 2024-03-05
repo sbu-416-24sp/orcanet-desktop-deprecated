@@ -1,7 +1,6 @@
 import Logo from "../svgs/OrcaNetLogo.tsx";
 
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
 import {
   PersonGear,
@@ -53,7 +52,7 @@ function Tabs({
   setActive,
 }: {
   active: string;
-  setActive: React.Dispatch<React.SetStateAction<string>>;
+  setActive: (path: string) => void;
 }) {
   const tabs = [
     {
@@ -89,7 +88,6 @@ function Tabs({
   ];
 
   return (
-    // <div className="tabs">
     <div
       className={`pt-2 px-4 flex gap-10 mt-3 ${
         active !== "/peer" ? "flex-col" : ""
@@ -109,19 +107,21 @@ function Tabs({
   );
 }
 
-export default function Menu() {
-  const [active, setActive] = useState(window.location.pathname);
-
-  let layout = "flex-col h-full bg-blue-900 bg-opacity-85 items-center";
+export default function Menu({
+  active,
+  setActive,
+}: {
+  active: string;
+  setActive: (path: string) => void;
+}) {
+  let layout: string = "flex-col h-full bg-blue-900 bg-opacity-85 items-center";
 
   if (active === "/peer") {
-    layout =
-      "w-full bg-opacity-85 z-50 absolute justify-between p-2";
+    layout = "w-full bg-opacity-0 z-50 absolute justify-between p-2";
     iconSize = 25;
   }
 
   return (
-    // <div className="menu">
     <div className={`flex ${layout}`}>
       <NavLink to="/help" onClick={() => setActive("/help")}>
         <Logo fill="white" active={active} />
