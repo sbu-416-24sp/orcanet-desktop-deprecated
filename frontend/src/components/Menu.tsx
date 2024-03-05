@@ -123,7 +123,7 @@ export default function Menu({
   }
 
   return (
-    <div className={`flex ${layout}`}>
+    <div className={`flex ${layout} animate__animated animate__fadeInLeft`}>
       <NavLink to="/help" onClick={() => setActive("/help")}>
         <Logo fill="white" active={active} />
       </NavLink>
