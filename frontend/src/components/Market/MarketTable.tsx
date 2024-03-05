@@ -57,7 +57,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   });
 
   return (
-    <div>
+    <div className="animate__animated animate__fadeInUp">
       <div className="flex items-center justify-between ">
         <div className="relative w-fit-content">
           <Search

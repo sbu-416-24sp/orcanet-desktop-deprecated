@@ -63,7 +63,7 @@ export function FileDataTable<TData>({ columns, data }: DataTableProps<TData>) {
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full animate__animated animate__fadeInUp">
       <div className="flex items-center pb-4">
         <Input
           placeholder="Filter files..."

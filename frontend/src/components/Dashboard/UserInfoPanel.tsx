@@ -4,7 +4,7 @@ import OrcaCoin from "../../svgs/orcaCoin.svg";
 export default function UserInfoPanel() {
   return (
     <div className="bg-gray-50 p-12 h-full">
-      <div className="info">
+      <div className="info animate__animated animate__fadeInDown">
         <h2 className="text-xl md:text-2xl font-semibold text-cyan-800 ">
           Welcome to OrcaNet
         </h2>

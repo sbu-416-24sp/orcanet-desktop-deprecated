@@ -35,10 +35,10 @@ export default function Metric() {
         title="TRAFFIC OVER TIME"
         graph={Traffic}
       /> */}
-      <div>
+      <div className="animate__animated animate__fadeInUp">
         <Bandwidth />
       </div>
-      <div className="max-[1000px]:collapse pt-8">
+      <div className="max-[1000px]:collapse pt-8 animate__animated animate__fadeInUp">
         <Traffic />
       </div>
     </div>

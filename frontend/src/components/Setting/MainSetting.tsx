@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 function AccessKeyGenerator() {
   return (
     <div>
-      <h3 className="pb-4">Access Key</h3>
-      <div className=" bg-white p-4 rounded-2xl ">
+      <h3 className="pb-4 animate__animated animate__fadeInUp">Access Key</h3>
+      <div className=" bg-white p-4 rounded-2xl animate__animated animate__fadeInUp">
         <p className="text-cyan-800 font-bold break-all m-0 pb-4">
           The OrcaNet Name System (ONNS) provides cryptographic addresses for
           publishing updates to content that is expected to change over time.

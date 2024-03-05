@@ -11,7 +11,7 @@ function UploadStatus() {
   return (
     <div className="file-upload-header">
       <Header />
-      <div className="flex items-center justify-between py-8">
+      <div className="flex items-center justify-between py-8 animate__animated animate__fadeInUp">
         <h3>File Upload Status</h3>
         {/* <Button className="px-3 py-1 mr-1 rounded-lg bg-sky-500 hover:bg-sky-700">
           + Import
