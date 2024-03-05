@@ -57,8 +57,8 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   });
 
   return (
-    <div className="animate__animated animate__fadeInUp">
-      <div className="flex items-center justify-between ">
+    <div>
+      <div className="flex items-center justify-between animate__animated animate__fadeInUp">
         <div className="relative w-fit-content">
           <Search
             size={15}
@@ -80,7 +80,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
         <TimeBar />
       </div>
       {/* <h3 className="pt-8">Market</h3> */}
-      <div className="rounded-2xl border mt-8 bg-white">
+      <div className="rounded-2xl border mt-8 bg-white animate__animated animate__fadeInUp">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

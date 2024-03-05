@@ -44,7 +44,7 @@ export default function DemoPage() {
     >
       <div>
         <Header />
-        <Card className="container animate__animated animate__fadeInUp">
+        <Card className="animate__animated animate__fadeInUp">
           <CardHeader>
             <CardDescription className="text-base font-medium">
               Balance
@@ -67,8 +67,10 @@ export default function DemoPage() {
             </div>
           </CardContent>
         </Card>
-        <div className="container mx-auto mt-3 animate__animated animate__fadeInUp">
-          <p>Transactions</p>
+        <div className="mx-auto mt-3 animate__animated animate__fadeInUp">
+          <h3 className="mb-3 animate__animated animate__fadeInUp">
+            Transactions
+          </h3>
           {data.length > 0 ? (
             <DataTable columns={columns} data={data} />
           ) : (

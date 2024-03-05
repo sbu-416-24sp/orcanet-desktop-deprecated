@@ -46,7 +46,7 @@ export default function PeerPage() {
 
       <Button
         variant="outline"
-        className="animate__animated animate__rollIn rounded-full h-16 w-16 absolute bottom-16 right-16 hover:bg-teal-500 hover:text-white transition durantion-1000"
+        className="animate__animated animate__rollIn rounded-full h-16 w-16 absolute bottom-16 right-16 hover:bg-gray-800 hover:text-white transition durantion-1000"
         onClick={() => setOpen(!open)}
       >
         {!open ? <ChevronDoubleUp /> : <ChevronDoubleDown />}

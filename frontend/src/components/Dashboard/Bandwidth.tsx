@@ -79,7 +79,7 @@ const Bandwidth: React.FC = () => {
 
   return (
     <div>
-      <h3 className="pt-4">BANDWIDTH OVER TIME</h3>
+      <h3 className="pt-4 text-xl">BANDWIDTH OVER TIME</h3>
       <div>
         <ReactApexChart
           options={options}

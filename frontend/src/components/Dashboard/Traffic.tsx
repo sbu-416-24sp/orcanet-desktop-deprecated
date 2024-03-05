@@ -10,7 +10,7 @@ export default function Traffic() {
 
   return (
     <div>
-      <h3 className="py-4">TRAFFIC OVER TIME</h3>
+      <h3 className="py-3 text-xl">TRAFFIC OVER TIME</h3>
       <div className="flex items-center bg-white justify-around pt-4  ">
         <GaugeComponent
           arc={{
