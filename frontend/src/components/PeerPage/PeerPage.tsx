@@ -23,7 +23,7 @@ export default function PeerPage() {
     if (globeRef.current) {
       globeRef.current.controls().autoRotate = true;
       globeRef.current.controls().autoRotateSpeed = 1;
-      globeRef.current.pointOfView({ lat: 0, lng: 0, altitude: 1.85 });
+      globeRef.current.pointOfView({ lat: 20, lng: 0, altitude: 1.85 });
     }
   }, []);
 
@@ -56,7 +56,6 @@ export default function PeerPage() {
         labelDotRadius={1}
         labelAltitude={0.02}
         labelColor={() => "#FFFF00"}
-        
       />
 
       <Button
