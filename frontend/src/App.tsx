@@ -1,4 +1,5 @@
 import "./index.css";
+import "animate.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
