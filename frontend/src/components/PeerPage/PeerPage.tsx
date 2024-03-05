@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { peerData } from "./PeerData";
 import { columns } from "./PeerColumns";
 import { ChevronDoubleUp, ChevronDoubleDown } from "react-bootstrap-icons";
+import SpaceBackground from "../../images/space-bg.jpg";
 
 export default function PeerPage() {
   const globeRef = useRef<GlobeMethods>(),
@@ -37,7 +38,7 @@ export default function PeerPage() {
       <ReactGlobe
         ref={globeRef}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        backgroundImageUrl="https://th.bing.com/th/id/R.bb387e5a1296d1cd048540c23b5633c5?rik=qoZnSIkhyOWbDA&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fBMrmUGk.jpg&ehk=6bVNzCHTgDVHpMvKIvEX167SUJl%2fq72pJPpDIdSw8Ug%3d&risl=&pid=ImgRaw&r=0"
+        backgroundImageUrl={SpaceBackground}
         animateIn={true}
         width={width}
         height={height}
