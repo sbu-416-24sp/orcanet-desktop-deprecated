@@ -1,10 +1,9 @@
 import "./index.css";
-import "./stylesheets/App.scss";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 import Menu from "./components/Menu";
 import DashboardPage from "./components/Dashboard/DashboardPage";
@@ -36,25 +35,26 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const path : string = window.location.pathname;
   
-  let layout : string = "grid grid-cols-2",
-    style : React.CSSProperties = {
+  const [path, setPath]: [
+    string,
+    React.Dispatch<React.SetStateAction<string>>
+  ] = useState(window.location.pathname);
+
+  let layout: string = "grid grid-cols-2",
+    style: React.CSSProperties = {
       gridTemplateColumns: "185px 1fr",
     };
 
-  if(path === "/peer") {
+  if (path === "/peer") {
     layout = "flex flex-col";
     style = {};
   }
 
   return (
-    <div
-      className={`${layout} font-sans h-full w-full m-0 p-0`}
-      style={style}
-    >
+    <div className={`${layout} font-sans h-full w-full m-0 p-0`} style={style}>
       <BrowserRouter>
-        <Menu/>
+        <Menu active={path} setActive={(path: string) => setPath(path)} />
         <LocationProvider>
           <AnimatedRoutes />
         </LocationProvider>
