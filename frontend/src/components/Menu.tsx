@@ -117,7 +117,8 @@ export default function Menu({
   let layout: string = "flex-col h-full bg-blue-900 bg-opacity-85 items-center";
 
   if (active === "/peer") {
-    layout = "w-full bg-opacity-0 z-50 absolute justify-between p-2";
+    layout =
+      "w-full bg-opacity-0 z-50 absolute justify-between p-2 animate__animated animate__zoomIn";
     iconSize = 25;
   }
 
