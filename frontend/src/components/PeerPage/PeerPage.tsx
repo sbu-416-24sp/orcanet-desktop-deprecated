@@ -42,6 +42,21 @@ export default function PeerPage() {
         animateIn={true}
         width={width}
         height={height}
+        labelsData={peerData.map((item) => {
+          return {
+            lat: item.lat,
+            lng: item.long,
+            location: item.location,
+            id: item.peerId,
+          };
+        })}
+        onLabelClick={() => alert("Label clicked")}
+        labelText={"location"}
+        labelSize={1}
+        labelDotRadius={1}
+        labelAltitude={0.02}
+        labelColor={() => "#FFFF00"}
+        
       />
 
       <Button
