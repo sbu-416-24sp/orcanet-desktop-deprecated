@@ -55,7 +55,7 @@ export default function PeerPage() {
       {open && (
         <DataTable
           style={
-            "animate__animated animate__fadeInUp opacity-95 bg-neutral-900 text-white w-3/4 absolute bottom-16 border-black overflow-auto max-h-80 no-scrollbar"
+            "animate__animated animate__fadeInUp bg-neutral-900 text-white w-3/4 absolute bottom-16 border-black overflow-auto max-h-80 no-scrollbar"
           }
           columns={columns}
           data={peerData}
