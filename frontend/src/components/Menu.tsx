@@ -116,7 +116,7 @@ export default function Menu() {
 
   if (active === "/peer") {
     layout =
-      "w-full bg-black-900 bg-opacity-85 z-50 absolute justify-between p-2";
+      "w-full bg-opacity-85 z-50 absolute justify-between p-2";
     iconSize = 25;
   }
 
