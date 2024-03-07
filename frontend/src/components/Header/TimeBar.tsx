@@ -27,14 +27,14 @@ const TimeBar = () => {
   const day: string = d.replace(",", "");
 
   return (
-    <div className="time-bar">
-      <div className="time">
+    <div className="flex items-center bg-white border border-gray-300 rounded-2xl px-3 py-1 text-sm">
+      <div className="flex items-center">
         <Clock />
-        <span className="time-text">{formattedTime}</span>
+        <span className="ml-2">{formattedTime}</span>
       </div>
-      <span className="separator"></span>
-      <div className="date">
-        <span className="date-text">
+      <span className="mx-2 h-6 border-l border-gray-300"></span>
+      <div>
+        <span>
           {day} {m} {y}
         </span>
       </div>
