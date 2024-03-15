@@ -9,3 +9,9 @@ export const sizeToBytes = (size: string) => {
     return 0;
   };
 
+export const generateFileHash = async (file: Blob): Promise<string> => {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', await file.arrayBuffer());
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex.slice(0, 20);
+};
