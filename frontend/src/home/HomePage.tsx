@@ -3,108 +3,110 @@ import SearchBar from "./SearchBar";
 import { sizeToBytes, generateFileHash } from "./sizeUtils";
 
 const HomePage = () => {
+  // Mock recent activities data with id, name, size, hash, status
+  const [recentActivities, setRecentActivities] = useState<Activity[]>([
+    {
+      id: 1,
+      name: "File1.txt",
+      size: "150KiB",
+      hash: "a1b2c3d4e5a1b2c3d4e5",
+      status: "Uploaded",
+      showDropdown: false,
+      peers: 3,
+    },
+    {
+      id: 2,
+      name: "Photo.png",
+      size: "45KiB",
+      hash: "f6g7h8i9j0f6g7h8i9j0",
+      status: "Uploaded",
+      showDropdown: false,
+      peers: 1,
+    },
+    {
+      id: 3,
+      name: "Document.pdf",
+      size: "120KiB",
+      hash: "k1l2m3n4o5k1l2m3n4o5",
+      status: "Deleted",
+      showDropdown: false,
+    },
+    {
+      id: 4,
+      name: "Presentation.pptx",
+      size: "500KiB",
+      hash: "p6q7r8s9t0p6q7r8s9t0",
+      status: "Uploaded",
+      showDropdown: false,
+      peers: 29,
+    },
+    {
+      id: 5,
+      name: "Spreadsheet.xlsx",
+      size: "85KiB",
+      hash: "u1v2w3x4y5u1v2w3x4y5",
+      status: "Updated",
+      showDropdown: false,
+      peers: 12,
+    },
+    {
+      id: 6,
+      name: "Archive.zip",
+      size: "2.5MiB",
+      hash: "z6a7b8c9d0z6a7b8c9d0",
+      status: "Uploaded",
+      showDropdown: false,
+      peers: 19,
+    },
+    {
+      id: 7,
+      name: "Ebook.epub",
+      size: "1MiB",
+      hash: "e1f2g3h4i5e1f2g3h4i5",
+      status: "Uploaded",
+      showDropdown: false,
+      peers: 4,
+    },
+    {
+      id: 8,
+      name: "Code.js",
+      size: "25KiB",
+      hash: "j6k7l8m9n0j6k7l8m9n0",
+      status: "Updated",
+      showDropdown: false,
+      peers: 6,
+    },
+  ]);
 
-    // Mock recent activities data with id, name, size, hash, status
-    const [recentActivities, setRecentActivities] = useState<Activity[]>([
-      {
-        id: 1,
-        name: "File1.txt",
-        size: "150KiB",
-        hash: "a1b2c3d4e5a1b2c3d4e5",
-        status: "Uploaded",
-        showDropdown: false,
-        peers: 3,
-      },
-      {
-        id: 2,
-        name: "Photo.png",
-        size: "45KiB",
-        hash: "f6g7h8i9j0f6g7h8i9j0",
-        status: "Uploaded",
-        showDropdown: false,
-        peers: 1,
-      },
-      {
-        id: 3,
-        name: "Document.pdf",
-        size: "120KiB",
-        hash: "k1l2m3n4o5k1l2m3n4o5",
-        status: "Deleted",
-        showDropdown: false,
-      },
-      {
-        id: 4,
-        name: "Presentation.pptx",
-        size: "500KiB",
-        hash: "p6q7r8s9t0p6q7r8s9t0",
-        status: "Uploaded",
-        showDropdown: false,
-        peers: 29,
-      },
-      {
-        id: 5,
-        name: "Spreadsheet.xlsx",
-        size: "85KiB",
-        hash: "u1v2w3x4y5u1v2w3x4y5",
-        status: "Updated",
-        showDropdown: false,
-        peers: 12,
-      },
-      {
-        id: 6,
-        name: "Archive.zip",
-        size: "2.5MiB",
-        hash: "z6a7b8c9d0z6a7b8c9d0",
-        status: "Uploaded",
-        showDropdown: false,
-        peers: 19,
-      },
-      {
-        id: 7,
-        name: "Ebook.epub",
-        size: "1MiB",
-        hash: "e1f2g3h4i5e1f2g3h4i5",
-        status: "Uploaded",
-        showDropdown: false,
-        peers: 4,
-      },
-      {
-        id: 8,
-        name: "Code.js",
-        size: "25KiB",
-        hash: "j6k7l8m9n0j6k7l8m9n0",
-        status: "Updated",
-        showDropdown: false,
-        peers: 6,
-      },
-    ]);
-
-    
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState<number[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSelectAllChange = useCallback(() => {
     if (selectAll) {
       setSelectedActivities([]);
+      setShowPopup(false);
     } else {
       const allActivityIds = recentActivities.map((activity) => activity.id);
       setSelectedActivities(allActivityIds);
+      setShowPopup(true);
     }
     setSelectAll(!selectAll);
   }, [selectAll, recentActivities]);
 
   const handleActivitySelectChange = useCallback((activityId: number) => {
     setSelectedActivities((prevSelectedActivities) => {
-      if (prevSelectedActivities.includes(activityId)) {
-        return prevSelectedActivities.filter((id) => id !== activityId);
-      } else {
-        return [...prevSelectedActivities, activityId];
-      }
+      const newSelectedActivities = prevSelectedActivities.includes(activityId)
+        ? prevSelectedActivities.filter((id) => id !== activityId)
+        : [...prevSelectedActivities, activityId];
+
+      setShowPopup(newSelectedActivities.length > 0);
+
+      return newSelectedActivities;
     });
   }, []);
-
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDragging(true);
@@ -129,7 +131,6 @@ const HomePage = () => {
     peers?: number;
   }
 
-
   const handleDrop = useCallback(
     async (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -143,7 +144,7 @@ const HomePage = () => {
         const newActivity = {
           id: recentActivities.length + 1,
           name: file.name,
-          size: `${(file.size / 1024).toFixed(2)}KiB`, // size is in bytes and converting to KiB 
+          size: `${(file.size / 1024).toFixed(2)}KiB`, // size is in bytes and converting to KiB
           hash: await generateFileHash(file),
           status: "Uploaded",
           showDropdown: false,
@@ -335,6 +336,32 @@ const HomePage = () => {
                               >
                                 Copy CID
                               </a>
+                            </div>
+                          )}
+                          {showPopup && (
+                            <div className="fixed bottom-0 left-250 right-0 p-4 bg-white shadow-lg z-50">
+                              <div className="flex justify-between items-center p-3 rounded">
+                                <div className="space-x-2">
+                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+                                    Download
+                                  </button>
+                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+                                    Remove
+                                  </button>
+                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+                                    Inspect
+                                  </button>
+                                  <button
+                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"
+                                    onClick={() => {
+                                      setShowPopup(false);
+                                      setSelectedActivities([]);
+                                    }}
+                                  >
+                                    Unselect all
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </td>
