@@ -83,6 +83,50 @@ const HomePage = () => {
   const [selectAll, setSelectAll] = useState(false);
   const [selectedActivities, setSelectedActivities] = useState<number[]>([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [renamingActivityId, setRenamingActivityId] = useState<number | null>(
+    null
+  );
+
+const initiateRename = (id: number) => {
+  setRenamingActivityId(id);
+  setRecentActivities((currentActivities) =>
+    currentActivities.map((activity) => {
+      if (activity.id === id) {
+        // close the dropdown for the activity being renamed
+        return { ...activity, showDropdown: false };
+      }
+      return activity;
+    })
+  );
+
+  // add click listener to close the dropdown if clicking outside
+  const handleClickOutside = (event: MouseEvent) => {
+    let targetElement = event.target as HTMLElement;
+
+    if (!targetElement.closest(`#rename-input-${id}`)) {
+      setRenamingActivityId(null); // Exit renaming mode
+      document.removeEventListener('click', handleClickOutside);
+    }
+  };
+
+  setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+};
+
+
+
+  const handleRename = (id: number, newName: string) => {
+    setRecentActivities((currentActivities) =>
+      currentActivities.map((activity) => {
+        if (activity.id === id) {
+          return { ...activity, name: newName };
+        }
+        return activity;
+      })
+    );
+    setRenamingActivityId(null); // Exit renaming mode
+  };
+
+  
 
   const handleSelectAllChange = useCallback(() => {
     if (selectAll) {
@@ -116,10 +160,6 @@ const HomePage = () => {
     e.preventDefault();
     setDragging(false);
   }, []);
-
-  const handleClick = () => {
-    fileInputRef.current?.click();
-  };
 
   interface Activity {
     id: number;
@@ -184,6 +224,7 @@ const HomePage = () => {
               All Blocks
             </span>
           </div>
+
           <input
             type="file"
             ref={fileInputRef}
@@ -194,7 +235,7 @@ const HomePage = () => {
                 const newActivity = {
                   id: recentActivities.length + 1,
                   name: file.name,
-                  size: `${(file.size / 1024).toFixed(2)}KiB`, // size is in bytes and converting to KiB for simplicity
+                  size: `${(file.size / 1024).toFixed(2)}KiB`, // size is in bytes and converted to KiB
                   hash: await generateFileHash(file),
                   status: "Uploaded",
                   showDropdown: false,
@@ -227,9 +268,9 @@ const HomePage = () => {
                     <th className="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider w-12">
                       <input
                         type="checkbox"
-                        className="w-4 h-4 mt-3"
+                        className="w-4 h-4 mt-3 checkbox-purple"
                         checked={selectAll}
-                        onChange={handleSelectAllChange} // Bind the change handler
+                        onChange={handleSelectAllChange}
                       />
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -255,7 +296,7 @@ const HomePage = () => {
                         <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm text-center">
                           <input
                             type="checkbox"
-                            className="w-4 h-4"
+                            className="w-4 h-4 checkbox-purple"
                             checked={selectedActivities.includes(activity.id)}
                             onChange={() =>
                               handleActivitySelectChange(activity.id)
@@ -327,6 +368,16 @@ const HomePage = () => {
                               <a
                                 href="#"
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  initiateRename(activity.id);
+                                }}
+                              >
+                                Rename
+                              </a>
+                              <a
+                                href="#"
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200"
                               >
                                 View File Details
                               </a>
@@ -337,6 +388,32 @@ const HomePage = () => {
                                 Copy CID
                               </a>
                             </div>
+                          )}
+                          {activity.id === renamingActivityId ? (
+                            <input
+                              type="text"
+                              defaultValue={activity.name}
+                              onBlur={(e) =>
+                                handleRename(activity.id, e.target.value)
+                              }
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  handleRename(
+                                    activity.id,
+                                    (e.target as HTMLInputElement).value
+                                  );
+                                }
+                              }}
+                              autoFocus
+                              className="text-gray-900 w-full max-w-xs overflow-hidden"
+                              style={{
+                                resize: "none",
+                                maxHeight: "30px",
+                                overflowY: "auto",
+                              }}
+                            />
+                          ) : (
+                            <p className="text-gray-900 whitespace-no-wrap"></p>
                           )}
                           {showPopup && (
                             <div className="fixed bottom-0 left-250 right-0 p-4 bg-white shadow-lg z-50">

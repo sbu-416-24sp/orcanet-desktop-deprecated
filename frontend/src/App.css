@@ -22,3 +22,7 @@ nav a {
 .home {
   @apply h-screen overflow-y-scroll;
 }
+
+.checkbox-purple:focus {
+  outline: 2px solid purple;
+}
