@@ -87,32 +87,30 @@ const HomePage = () => {
     null
   );
 
-const initiateRename = (id: number) => {
-  setRenamingActivityId(id);
-  setRecentActivities((currentActivities) =>
-    currentActivities.map((activity) => {
-      if (activity.id === id) {
-        // close the dropdown for the activity being renamed
-        return { ...activity, showDropdown: false };
+  const initiateRename = (id: number) => {
+    setRenamingActivityId(id);
+    setRecentActivities((currentActivities) =>
+      currentActivities.map((activity) => {
+        if (activity.id === id) {
+          // close the dropdown for the activity being renamed
+          return { ...activity, showDropdown: false };
+        }
+        return activity;
+      })
+    );
+
+    // add click listener to close the dropdown if clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      let targetElement = event.target as HTMLElement;
+
+      if (!targetElement.closest(`#rename-input-${id}`)) {
+        setRenamingActivityId(null);
+        document.removeEventListener("click", handleClickOutside);
       }
-      return activity;
-    })
-  );
+    };
 
-  // add click listener to close the dropdown if clicking outside
-  const handleClickOutside = (event: MouseEvent) => {
-    let targetElement = event.target as HTMLElement;
-
-    if (!targetElement.closest(`#rename-input-${id}`)) {
-      setRenamingActivityId(null); // Exit renaming mode
-      document.removeEventListener('click', handleClickOutside);
-    }
+    setTimeout(() => document.addEventListener("click", handleClickOutside), 0);
   };
-
-  setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
-};
-
-
 
   const handleRename = (id: number, newName: string) => {
     setRecentActivities((currentActivities) =>
@@ -123,10 +121,18 @@ const initiateRename = (id: number) => {
         return activity;
       })
     );
-    setRenamingActivityId(null); // Exit renaming mode
+    setRenamingActivityId(null);
   };
 
-  
+  const handleRemoveSelectedActivities = () => {
+    setRecentActivities((currentActivities) =>
+      currentActivities.filter(
+        (activity) => !selectedActivities.includes(activity.id)
+      )
+    );
+    // Optionally, clear the selection after removal
+    setSelectedActivities([]);
+  };
 
   const handleSelectAllChange = useCallback(() => {
     if (selectAll) {
@@ -422,7 +428,10 @@ const initiateRename = (id: number) => {
                                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
                                     Download
                                   </button>
-                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+                                  <button
+                                    className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs"
+                                    onClick={handleRemoveSelectedActivities}
+                                  >
                                     Remove
                                   </button>
                                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
