@@ -1,6 +1,10 @@
+"use client";
+
 import React, { useCallback, useRef, useState } from "react";
 import SearchBar from "./SearchBar";
 import { sizeToBytes, generateFileHash } from "./sizeUtils";
+import { Checkbox } from "@/components/ui/checkbox";
+
 
 const HomePage = () => {
   // Mock recent activities data with id, name, size, hash, status
@@ -130,7 +134,6 @@ const HomePage = () => {
         (activity) => !selectedActivities.includes(activity.id)
       )
     );
-    // Optionally, clear the selection after removal
     setSelectedActivities([]);
   };
 
@@ -272,11 +275,10 @@ const HomePage = () => {
                 <thead>
                   <tr>
                     <th className="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider w-12">
-                      <input
-                        type="checkbox"
-                        className="w-4 h-4 mt-3 checkbox-purple"
+                      <Checkbox
                         checked={selectAll}
-                        onChange={handleSelectAllChange}
+                        onCheckedChange={handleSelectAllChange}
+                        aria-label="Select all"
                       />
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -300,13 +302,11 @@ const HomePage = () => {
                     .map((activity, index) => (
                       <tr key={activity.id}>
                         <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                          <input
-                            type="checkbox"
-                            className="w-4 h-4 checkbox-purple"
+                          <Checkbox
                             checked={selectedActivities.includes(activity.id)}
-                            onChange={() =>
-                              handleActivitySelectChange(activity.id)
-                            }
+                            onCheckedChange={() =>
+                               handleActivitySelectChange(activity.id)
+                             }
                           />
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -428,14 +428,14 @@ const HomePage = () => {
                                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
                                     Download
                                   </button>
+                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+                                    Inspect
+                                  </button>
                                   <button
                                     className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs"
                                     onClick={handleRemoveSelectedActivities}
                                   >
                                     Remove
-                                  </button>
-                                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
-                                    Inspect
                                   </button>
                                   <button
                                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"
