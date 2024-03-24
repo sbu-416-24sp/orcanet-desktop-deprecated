@@ -39,10 +39,6 @@ export const getColumns = (
             }}
             aria-label="Select all"
           />
-          <button onClick={() => table.toggleAllPageRowsSelected(false)}>
-            Unselect All
-          </button>
-          <button onClick={removeAllSelected}>Remove Selected</button>
         </>
       ),
       cell: ({ row }) => (

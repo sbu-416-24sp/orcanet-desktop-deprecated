@@ -206,7 +206,7 @@ const HomePage = () => {
           toggleEdit,
           removeAllSelected,
           updateSelection,
-          updateAllSelections
+          updateAllSelections,
         )}
         data={activities}
         totalSize={totalSizeFormatted}

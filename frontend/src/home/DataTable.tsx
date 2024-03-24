@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, useRef } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,6 +13,8 @@ import {
 } from "@tanstack/react-table";
 
 import SearchBar from "./SearchBar";
+
+import { generateFileHash } from "./sizeUtils";
 
 import {
   Table,
@@ -29,20 +31,21 @@ import { Activity } from "./columns";
 interface DataTableProps {
   columns: ColumnDef<Activity>[];
   data: Activity[];
+  totalSize: string;
+  onFileAdded: (file: File) => Promise<void>;
 }
 
-export function DataTable({ columns, data }: DataTableProps) {
+export function DataTable({
+  columns,
+  data,
+  totalSize,
+  onFileAdded,
+}: DataTableProps) {
   const [globalFilter, setGlobalFilter] = useState("");
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const totalSizeBytes = 1;
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const toggleDropdown = (id: number) => {
-    setActivities((currentActivities) =>
-      currentActivities.map((activity) =>
-        activity.id === id ? { ...activity, showDropdown: !activity.showDropdown } : activity
-      )
-    );
-  };
-  
+
 
   const fuzzyTextFilterFn: FilterFnOption<Activity> = (
     row,
@@ -71,12 +74,55 @@ export function DataTable({ columns, data }: DataTableProps) {
   });
 
   return (
-    <div>
-      <div className="flex items-center py-4">
+    <div className="flex flex-col py-4">
+      <div className="mb-2">
         <SearchBar
           value={globalFilter}
           onChange={(value) => setGlobalFilter(String(value))}
         />
+      </div>
+
+      <div className="flex items-center py-4">
+        <div className="w-full">
+          <section className="mb-1 mt-1 mr-2 ml-auto flex flex-row  p-0.5 rounded-t font-mono w-full">
+            <div className="flex justify-between items-center w-full">
+              <div className="flex flex-row items-center justify-center w-1/2">
+                <h3 className="text-lg font-semibold text-black">
+                  {data.length} 
+                </h3>
+                <span className="text-sm font-medium text-gray-600 ml-1">
+                {data.length === 1 ? "file" : "files"}
+                </span>
+              </div>
+              <div className="flex flex-row items-center justify-center w-1/2">
+                <h3 className="text-lg font-semibold text-black mr-2">
+                  {totalSize}
+                </h3>
+                <span className="text-sm font-medium text-gray-600">
+                   Total Size
+                </span>
+              </div>
+
+              <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={async (e) => {
+                  const file = e.target.files ? e.target.files[0] : null;
+                  if (file) {
+                    await onFileAdded(file);
+                  }
+                }}
+              />
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 ml-2 rounded text-sm whitespace-nowrap"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                + Import
+              </button>
+            </div>
+          </section>
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -99,20 +145,23 @@ export function DataTable({ columns, data }: DataTableProps) {
             ))}
           </TableHeader>
           <TableBody>
-        {table.getRowModel().rows?.length ? (
-          table.getRowModel().rows.map((row) => (
-            <TableRow
-              key={row.id}
-              data-state={row.getIsSelected() && "selected"}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))
-        ) : (
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
