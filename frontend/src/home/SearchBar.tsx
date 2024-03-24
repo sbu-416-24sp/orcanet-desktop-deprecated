@@ -1,30 +1,20 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React, { useState } from 'react';
 
 interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    onSearch(newValue);
-  };
-
+export default function SearchBar({ onChange }: SearchBarProps) {
   return (
-    <div>
-       <Input
-        type="search"
-        className="max-w-sm inline text-black"
-        value={inputValue}
-        onChange={handleChange}
-        placeholder="hash | url"
+    <div className="flex w-full max-w-sm items-center space-x-2">
+      <Input
+        type="text"
+        placeholder="Search..."
+        className="w-full"
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );
-};
-
-export default SearchBar;
+}
