@@ -1,0 +1,45 @@
+.top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px; 
+ }
+ 
+ .qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+ }
+ 
+ .send-receive-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; 
+ }
+ 
+ .send-receive-buttons .btn {
+  background-color: #eaeaea; 
+  margin-right: 10px;
+ }
+ 
+ .modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+ }
+ 
