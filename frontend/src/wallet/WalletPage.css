@@ -1,33 +1,28 @@
-/* WalletPage.css */
-
-/* Existing styles remain unchanged */
-
-/* New styles for QR code, buttons, and modal */
 .top-section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 20px; /* Space above the QR code */
+  margin-top: 20px; 
  }
  
  .qr-code-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Space below the QR code */
+  margin-bottom: 20px;
  }
  
  .send-receive-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Space below the buttons */
+  margin-bottom: 20px; 
  }
  
  .send-receive-buttons .btn {
-  background-color: #eaeaea; /* Gray buttons */
-  margin-right: 10px; /* Space between buttons */
+  background-color: #eaeaea; 
+  margin-right: 10px;
  }
  
  .modal-container {
