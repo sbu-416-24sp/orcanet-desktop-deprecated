@@ -17,7 +17,7 @@ import { DataTable } from "./DataTable";
 import { columns } from "./columns";
 import fakeSeeds from "./fakeSeeds";
 
-
+import AddConnection from "./addConnection";
 
 type MapData = {
   rank: number;
@@ -67,6 +67,7 @@ const PeersPage = () => {
   return (
     <div className="p-2 block w-auto overflow-y-scroll">
       <div id="peers-page" className="container p-8 pt-0 pl-12 justify-self-center">
+        <AddConnection/>
         <RadialGradient />
         <ComposableMap>
         <Sphere stroke="#E4E5E6" strokeWidth={0.5} fill="transparent" id="sphere"/>
