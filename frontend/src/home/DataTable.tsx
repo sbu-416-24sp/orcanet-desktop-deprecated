@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -13,8 +13,6 @@ import {
 } from "@tanstack/react-table";
 
 import SearchBar from "./SearchBar";
-
-import { generateFileHash } from "./sizeUtils";
 
 import {
   Table,
@@ -33,6 +31,7 @@ interface DataTableProps {
   data: Activity[];
   totalSize: string;
   onFileAdded: (file: File) => Promise<void>;
+  activities: Activity[];
 }
 
 export function DataTable({
@@ -40,12 +39,34 @@ export function DataTable({
   data,
   totalSize,
   onFileAdded,
+  activities,
 }: DataTableProps) {
   const [globalFilter, setGlobalFilter] = useState("");
-  const totalSizeBytes = 1;
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.setAttribute("webkitdirectory", "true");
+      fileInputRef.current.setAttribute("directory", "true");
+    }
+  }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownVisible(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
 
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const fuzzyTextFilterFn: FilterFnOption<Activity> = (
     row,
@@ -74,39 +95,40 @@ export function DataTable({
   });
 
   return (
-    <div className="flex flex-col py-4">
-      <div className="mb-2">
-        <SearchBar
-          value={globalFilter}
-          onChange={(value) => setGlobalFilter(String(value))}
-        />
-      </div>
-
-      <div className="flex items-center py-4">
-        <div className="w-full">
-          <section className="mb-1 mt-1 mr-2 ml-auto flex flex-row  p-0.5 rounded-t font-mono w-full">
-            <div className="flex justify-between items-center w-full">
-              <div className="flex flex-row items-center justify-center w-1/2">
-                <h3 className="text-lg font-semibold text-black">
-                  {data.length} 
-                </h3>
-                <span className="text-sm font-medium text-gray-600 ml-1">
-                {data.length === 1 ? "file" : "files"}
-                </span>
-              </div>
-              <div className="flex flex-row items-center justify-center w-1/2">
-                <h3 className="text-lg font-semibold text-black mr-2">
-                  {totalSize}
-                </h3>
-                <span className="text-sm font-medium text-gray-600">
-                   Total Size
-                </span>
-              </div>
-
+    <div className="flex flex-col py-4 w-full">
+      <div className="flex items-center justify-between py-2">
+        <div className="w-1/2">
+          <SearchBar
+            value={globalFilter}
+            onChange={(value) => setGlobalFilter(String(value))}
+          />
+        </div>
+        <div className="w-1/2 flex justify-end relative">
+          <button
+            id="file-upload"
+            className="bg-[#284d64] hover:bg-[#284d64] text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out"
+            onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+          >
+            <span className="text-[#79cad2]">+</span> Import
+          </button>
+          <div
+            ref={dropdownRef}
+            className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 ${
+              isDropdownVisible ? "block" : "hidden"
+            }`}
+            id="file-upload-dropdown"
+            style={{ top: "100%" }}
+          >
+            <label
+              htmlFor="file-upload-file"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200 cursor-pointer"
+            >
+              File
               <input
+                id="file-upload-file"
                 type="file"
                 ref={fileInputRef}
-                style={{ display: "none" }}
+                className="hidden"
                 onChange={async (e) => {
                   const file = e.target.files ? e.target.files[0] : null;
                   if (file) {
@@ -114,14 +136,31 @@ export function DataTable({
                   }
                 }}
               />
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 ml-2 rounded text-sm whitespace-nowrap"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                + Import
-              </button>
+            </label>
+            <label
+              htmlFor="folder-upload"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
+              Folder
+              <input
+                id="folder-upload"
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                onChange={async (e) => {
+                  const items = e.target.files ? e.target.files : null;
+                  if (items) {
+                    for (let i = 0; i < items.length; i++) {
+                      await onFileAdded(items[i]);
+                    }
+                  }
+                }}
+              />
+            </label>
+            <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              New folder
             </div>
-          </section>
+          </div>
         </div>
       </div>
       <div className="rounded-md border">
@@ -149,8 +188,8 @@ export function DataTable({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                  className={row.getIsSelected() ? "selected-row" : "unselected-row"} 
+                  >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
@@ -174,7 +213,7 @@ export function DataTable({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 pb-8">
         <Button
           variant="outline"
           size="sm"

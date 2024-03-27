@@ -11,7 +11,7 @@ export default function SearchBar({ onChange }: SearchBarProps) {
     <div className="flex w-full max-w-sm items-center space-x-2">
       <Input
         type="text"
-        placeholder="Search..."
+        placeholder="Hash"
         className="w-full"
         onChange={(e) => onChange(e.target.value)}
       />
