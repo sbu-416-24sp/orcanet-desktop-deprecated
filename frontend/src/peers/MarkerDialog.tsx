@@ -22,11 +22,12 @@ type IProps = {
 }
 
 const MarkerDialog = ({city_code, lng, lat, popScale, population}: IProps) => {
+
   return (
     <Dialog modal={false}>
       <DialogTrigger asChild>
              <Marker key={city_code} coordinates={[lng, lat]} className="cursor-pointer">
-                <circle fill="#F53" stroke="#FFF" r={popScale(population)} />
+                <circle fill="#3b82f6" stroke="#FFF" r={popScale(population)} />
               </Marker>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md felx justify-center">

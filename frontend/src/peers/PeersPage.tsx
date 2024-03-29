@@ -16,6 +16,7 @@ import mapData  from "./data.json";
 import { DataTable } from "./DataTable";
 import { columns } from "./columns";
 import fakeSeeds from "./fakeSeeds";
+import MarkerPoints from './MarkerPoints';
 
 import AddConnection from "./addConnection";
 
@@ -65,7 +66,7 @@ const PeersPage = () => {
   );
 
   return (
-    <div className="p-2 block w-auto overflow-y-scroll">
+    <div className="p-2 pb-0 block w-auto overflow-y-scroll">
       <div id="peers-page" className="container p-8 pt-0 pl-12 justify-self-center">
         <AddConnection/>
         <RadialGradient />
@@ -117,6 +118,8 @@ const PeersPage = () => {
 
        <h1 className="text-center text-3xl">900</h1>
        <h1 className="text-center font-bold text-gray-400 text-base">PEERS</h1>
+        
+        <MarkerPoints />
 
        <div className="mt-9 w-auto">
           <DataTable columns={columns} data={fakeSeeds} />
