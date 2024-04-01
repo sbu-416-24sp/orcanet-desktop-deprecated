@@ -1,6 +1,6 @@
 import { MoreVertical, ChevronLast, ChevronFirst, BarChart2 } from "lucide-react"
 import { useContext, createContext, useState, ReactNode } from "react"
-import { LayoutDashboard, Settings, Receipt, Package} from "lucide-react";
+import { LayoutDashboard, Settings, Receipt, Package, Network } from "lucide-react";
 export const SidebarContext = createContext({ expanded: true })
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import orcanetLogo from './../assets/images/orcanetPNG.png';
@@ -61,6 +61,14 @@ const Sidebar = () => {
                 icon={<Receipt />}
                 text="Wallet"
                 active={isActive('/wallet')}
+                alert={false}
+              /> 
+            </Link>
+            <Link to="/peers">
+              <SidebarItem
+                icon={<Network />}
+                text="Peers"
+                active={isActive('/peers')}
                 alert={false}
               /> 
             </Link>
