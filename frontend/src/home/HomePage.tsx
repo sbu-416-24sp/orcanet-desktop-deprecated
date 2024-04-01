@@ -3,7 +3,6 @@ import { DataTable } from "./DataTable";
 import { getColumns } from "./columns";
 import "./HomePage.css";
 import { generateFileHash, formatFileSize, sizeToBytes } from "./sizeUtils";
-import { SidebarContext } from "../sidebar/sidebar";
 
 const HomePage = () => {
   interface Activity {
@@ -90,12 +89,7 @@ const HomePage = () => {
       peers: 6,
     },
   ]);
-
-  const { expanded } = useContext(SidebarContext);
-
   
-  const marginLeft = expanded ? "300px" : "100px";
-
   const isAnyActivitySelected = activities.some(
     (activity) => activity.isSelected
   );
@@ -261,7 +255,6 @@ const HomePage = () => {
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      style={{ marginLeft }}
       className={`relative w-full`}
     >
       <div className="dashboard-overview bg-gray-100 p-4 rounded-lg shadow mb-4">

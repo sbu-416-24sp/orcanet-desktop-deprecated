@@ -3,7 +3,7 @@ import StorePage from "./store/StorePage";
 import MarketPage from "./market/MarketPage";
 import WalletPage from "./wallet/WalletPage";
 import SettingsPage from "./settings/SettingsPage";
-import Sidebar from "./sidebar/sidebar";
+import Sidebar from "./sidebar/Sidebar";
 
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -12,10 +12,10 @@ import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <div id="App">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div id="App" className="flex overflow-hidden">
         <Router>
-          <Navbar />
+          <Sidebar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/store" element={<StorePage />} />
@@ -38,12 +38,6 @@ const pageMap: { label: string; path: string }[] = [
   { label: "Wallet", path: "/wallet" },
   { label: "Settings", path: "/settings" },
 ];
-
-const Navbar = () => {
-  return (
-    <Sidebar /> 
-  );
-};
 
 import { Button } from "@/components/ui/button";
 
