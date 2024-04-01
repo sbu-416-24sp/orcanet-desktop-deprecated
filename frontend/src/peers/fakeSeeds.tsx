@@ -10,7 +10,7 @@ const fakeSeeds: Seed[] = [
     flagUrl:"https://www.worldometers.info//img/flags/small/tn_us-flag.gif"
   },
   {
-    location: "ARG, Belarius",
+    location: "ARG, Buenos Aires",
     latency: "34ms",
     peerID:  "762 zDl9",
     connection: "ip4.tcp",
