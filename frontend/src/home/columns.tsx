@@ -163,18 +163,18 @@ export const getColumns = (
           </button>
           {row.original.showDropdown && (
             <div
-              className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 border border-blue-200"
+              className="fixed right-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl z-20 border border-gray-700"
               id={`dropdown-${row.original.id}`}
               onClick={(e) => e.stopPropagation()}
             >
               <a
                 href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200"
+                className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 border-b border-gray-600"
               >
                 Download
               </a>
               <div
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200 cursor-pointer"
+                className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 border-b border-gray-600 cursor-pointer"
                 onClick={(e) => {
                   e.preventDefault();
                   toggleEdit(row.original.id);
@@ -185,12 +185,12 @@ export const getColumns = (
               </div>
               <a
                 href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200"
+                className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 border-b border-gray-600"
               >
                 View File Details
               </a>
               <div
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200 cursor-pointer"
+                className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 border-b border-gray-600 cursor-pointer"
                 onClick={() => {
                   navigator.clipboard.writeText(row.original.hash);
                   toggleDropdown(row.original.id);
@@ -198,7 +198,7 @@ export const getColumns = (
               >
                 Copy CID
               </div>
-              <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              <div className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 cursor-pointer">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

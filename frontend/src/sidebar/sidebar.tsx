@@ -16,7 +16,7 @@ import {
 } from "react-router-dom";
 import orcanetLogo from "./../assets/images/OrcaNet-Dark.png";
 import React from "react";
-import SidebarItem from "./SidebarItem";
+import SidebarItem from "./Sidebaritem";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(true);

@@ -257,28 +257,30 @@ const HomePage = () => {
       onDragLeave={handleDragLeave}
       className={`relative w-full`}
     >
-      <div className="dashboard-overview bg-gray-100 p-4 rounded-lg shadow mb-4">
-        <h2 className="text-lg font-semibold mb-2">Dashboard Overview</h2>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="file-hosted">
-            <span className="block text-sm font-medium text-gray-600">
+      <div className="dashboard-overview bg-gray-800 p-6 rounded-xl shadow-lg mb-6">
+        <h2 className="text-xl font-semibold mb-4 text-gray-200">Dashboard Overview</h2>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="file-hosted bg-gray-700 p-4 rounded-lg">
+            <span className="block text-sm font-medium text-gray-400">
               Files Hosted
             </span>
-            <span className="block text-xl font-bold">{totalFiles}</span>
+            <span className="block text-2xl font-bold text-white">
+              {totalFiles}
+            </span>
           </div>
-          <div className="storage-used">
-            <span className="block text-sm font-medium text-gray-600">
+          <div className="storage-used bg-gray-700 p-4 rounded-lg">
+            <span className="block text-sm font-medium text-gray-400">
               Total Storage Used
             </span>
-            <span className="block text-xl font-bold">
+            <span className="block text-2xl font-bold text-white">
               {totalSizeFormatted}
             </span>
           </div>
-          <div className="network-status">
-            <span className="block text-sm font-medium text-gray-600">
+          <div className="network-status bg-gray-700 p-4 rounded-lg">
+            <span className="block text-sm font-medium text-gray-400">
               Network Status
             </span>
-            <span className="block text-xl font-bold text-green-500">
+            <span className={`block text-2xl font-bold ${networkStatus === "Healthy" ? "text-green-400" : "text-red-400"}`}>
               {networkStatus}
             </span>
           </div>

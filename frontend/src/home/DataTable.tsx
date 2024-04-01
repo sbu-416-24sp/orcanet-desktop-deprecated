@@ -80,8 +80,9 @@ export function DataTable({
       : false;
   };
 
+  let reversedData = data.reverse();
   const table = useReactTable({
-    data,
+    data: reversedData,
     columns,
     state: {
       globalFilter,
@@ -106,14 +107,14 @@ export function DataTable({
         <div className="w-1/2 flex justify-end relative">
           <button
             id="file-upload"
-            className="bg-[#284d64] hover:bg-[#284d64] text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out"
+            className="bg-[#284d64] hover:bg-[#3a6679] text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out"
             onClick={() => setIsDropdownVisible(!isDropdownVisible)}
           >
             <span className="text-[#79cad2]">+</span> Import
           </button>
           <div
             ref={dropdownRef}
-            className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 ${
+            className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#2a2a2a] ring-1 ring-black ring-opacity-5 divide-y divide-gray-700 ${
               isDropdownVisible ? "block" : "hidden"
             }`}
             id="file-upload-dropdown"
@@ -121,7 +122,7 @@ export function DataTable({
           >
             <label
               htmlFor="file-upload-file"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200 cursor-pointer"
+              className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 border-b border-gray-600 cursor-pointer"
             >
               File
               <input
@@ -139,7 +140,7 @@ export function DataTable({
             </label>
             <label
               htmlFor="folder-upload"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 cursor-pointer"
             >
               Folder
               <input
@@ -157,7 +158,7 @@ export function DataTable({
                 }}
               />
             </label>
-            <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+            <div className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 cursor-pointer">
               New folder
             </div>
           </div>
