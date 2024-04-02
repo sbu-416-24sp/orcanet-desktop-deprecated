@@ -80,9 +80,8 @@ export function DataTable({
       : false;
   };
 
-  let reversedData = data.reverse();
   const table = useReactTable({
-    data: reversedData,
+    data,
     columns,
     state: {
       globalFilter,
@@ -107,14 +106,14 @@ export function DataTable({
         <div className="w-1/2 flex justify-end relative">
           <button
             id="file-upload"
-            className="bg-[#284d64] hover:bg-[#3a6679] text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out"
+            className="bg-[#1E293B] hover:bg-[#1E293B] text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out"
             onClick={() => setIsDropdownVisible(!isDropdownVisible)}
           >
             <span className="text-[#79cad2]">+</span> Import
           </button>
           <div
             ref={dropdownRef}
-            className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#2a2a2a] ring-1 ring-black ring-opacity-5 divide-y divide-gray-700 ${
+            className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#1E293B] ring-1 ring-white ring-opacity-5 divide-y divide-gray-700 ${
               isDropdownVisible ? "block" : "hidden"
             }`}
             id="file-upload-dropdown"

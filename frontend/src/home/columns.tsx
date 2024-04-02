@@ -97,6 +97,7 @@ export const getColumns = (
             <input
               type="text"
               defaultValue={row.original.name}
+              className="bg-gray-800 text-gray-200 border-none"
               onBlur={(e) => {
                 updateActivityName(row.original.id, e.target.value);
                 toggleEdit(row.original.id);
