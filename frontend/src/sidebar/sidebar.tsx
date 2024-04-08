@@ -1,8 +1,4 @@
-import {
-  ChevronLast,
-  ChevronFirst,
-  BarChart2,
-} from "lucide-react";
+import { ChevronLast, ChevronFirst, BarChart2 } from "lucide-react";
 import { createContext, useState } from "react";
 import { LayoutDashboard, Settings, Receipt, Package } from "lucide-react";
 export const SidebarContext = createContext({ expanded: true });
@@ -19,8 +15,9 @@ function MenuHeader({
 }) {
   return (
     <div
-      className={`p-4 pb-2 mt-1 mb-4 flex justify-${
-        expanded ? "between" : "center"
+      className={`p-4 pb-2 flex
+      ${
+        expanded ? "justify-between mt-1 mb-4" : "justify-center my-4"
       } items-center`}
     >
       <img
