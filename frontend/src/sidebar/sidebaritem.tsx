@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { SidebarContext } from "./sidebar";
+import { SidebarContext } from "./Sidebar";
 import { NavLink } from "react-router-dom";
 
 type SidebarItemProps = {
@@ -47,7 +47,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text, active }) => {
     <NavLink to={`/${text !== "Home" ? text.toLowerCase() : ""}`}>
       <div
         className={`
-          relative flex items-center py-2 px-3 mb-4
+          relative flex items-center p-2 mb-4
           font-medium rounded-md cursor-pointer
           transition-colors group justify-center
           transition duration-400
