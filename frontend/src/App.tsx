@@ -5,6 +5,7 @@ import MarketPage from "./market/MarketPage";
 import WalletPage from "./wallet/WalletPage";
 import SettingsPage from "./settings/SettingsPage";
 import Sidebar from "./sidebar/Sidebar";
+import MiningPage from "./mining/Mining";
 
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -23,6 +24,7 @@ function App() {
             <Route path="/peer" element={<PeerPage />} />
             <Route path="/market" element={<MarketPage />} />
             <Route path="/wallet" element={<WalletPage />} />
+            <Route path="/mining" element={<MiningPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </Router>
