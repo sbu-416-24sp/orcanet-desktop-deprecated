@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Settings,
   Package,
+  Pickaxe,
 } from "lucide-react";
 import { createContext, useState } from "react";
 export const SidebarContext = createContext({ expanded: true });
@@ -78,6 +79,11 @@ function NavButtons({
       icon: <WalletCards />,
       text: "Wallet",
       active: isActive("/wallet"),
+    },
+    {
+      icon: <Pickaxe />,
+      text: "Mining",
+      active: isActive("/mining"),
     },
     {
       icon: <Settings />,
