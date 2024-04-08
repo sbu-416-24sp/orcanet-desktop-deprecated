@@ -6,12 +6,12 @@ import ActivityChart from "./ActivityChart";
 
 function StatsPageContent() {
   return (
-    <div className="size-full overflow-y-auto p-7 grid grid-rows-2 gap-7">
+    <div className="size-full overflow-y-auto p-7">
       <div className="grid grid-cols-5 gap-7">
         <StatsCardContainer />
         <BandwidthChart />
       </div>
-      <div className="grid grid-cols-2 gap-7">
+      <div className="grid grid-cols-2 gap-7 mt-7">
         <FileTypeChart />
         <ActivityChart />
       </div>

@@ -41,6 +41,18 @@ export default function FileTypeChart() {
     dataLabels: {
       enabled: false,
     },
+    labels: [
+      "Apr 1",
+      "Mar 25",
+      "Mar 18",
+      "Mar 11",
+      "Mar 4",
+      "Feb 26",
+      "Feb 19",
+      "Feb 12",
+      "Feb 5",
+      "Jan 29",
+    ].reverse(),
   };
 
   return (
