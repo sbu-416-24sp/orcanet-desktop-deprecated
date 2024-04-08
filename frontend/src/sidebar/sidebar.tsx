@@ -1,10 +1,18 @@
-import { ChevronLast, ChevronFirst, BarChart2 } from "lucide-react";
+import {
+  ChevronLast,
+  ChevronFirst,
+  BarChart2,
+  LineChart,
+  WalletCards,
+  LayoutDashboard,
+  Settings,
+  Package,
+} from "lucide-react";
 import { createContext, useState } from "react";
-import { LayoutDashboard, Settings, Receipt, Package } from "lucide-react";
 export const SidebarContext = createContext({ expanded: true });
 import { useLocation } from "react-router-dom";
 import orcanetLogo from "./../assets/images/OrcaNet-Dark.png";
-import SidebarItem from "./sidebaritem";
+import SidebarItem from "./SidebarItem";
 
 function MenuHeader({
   expanded,
@@ -52,9 +60,14 @@ function NavButtons({
       active: isActive("/"),
     },
     {
-      icon: <Package />,
+      icon: <LineChart />,
       text: "Stats",
       active: isActive("/stats"),
+    },
+    {
+      icon: <Package />,
+      text: "Peer",
+      active: isActive("/peer"),
     },
     {
       icon: <BarChart2 />,
@@ -62,7 +75,7 @@ function NavButtons({
       active: isActive("/market"),
     },
     {
-      icon: <Receipt />,
+      icon: <WalletCards />,
       text: "Wallet",
       active: isActive("/wallet"),
     },
