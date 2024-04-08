@@ -53,6 +53,11 @@ export default function FileTypeChart() {
       "Feb 5",
       "Jan 29",
     ].reverse(),
+    xaxis: {
+      title: {
+        text: "Weeks",
+      }
+    },
   };
 
   return (
