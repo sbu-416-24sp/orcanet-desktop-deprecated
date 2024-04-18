@@ -71,7 +71,7 @@ export default function WalletInfoCards() {
   ];
   
   return (
-    <div className="grid xl:grid-cols-4 xl:grid-rows-1 md:grid-cols-2 md:grid-rows-2 gap-7 mb-7">
+    <div className="grid xl:grid-cols-4 xl:grid-rows-1 grid-cols-2 grid-rows-2 gap-7 mb-7">
       {cardInfoList.map((cardInfo) => (
         <WalletInfoCard
           key={cardInfo.title}
