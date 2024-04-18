@@ -1,4 +1,4 @@
-//import PageHeader from "../header/PageHeader";
+import PageHeader from "../header/PageHeader";
 import WalletInfoCards from "./WalletInfoCards";
 import WalletTransPanel from "./WalletTransPanel";
 import WalletTransGraph from "./WalletTransGraph";
@@ -24,7 +24,7 @@ function WalletPageContent({ path }: { path: string }) {
 const WalletPage = ({ path }: { path: string }) => {
   return (
     <div id="wallet-page" className="size-full flex flex-col">
-      {/* <PageHeader pageName="Wallet" /> */}
+      <PageHeader pageName="Wallet" />
       <WalletPageContent path={path} />
     </div>
   );
