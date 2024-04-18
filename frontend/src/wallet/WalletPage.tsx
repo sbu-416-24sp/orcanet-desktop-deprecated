@@ -11,7 +11,7 @@ function WalletPageContent({ path }: { path: string }) {
     >
       {path === "wallet" && <WalletInfoCards />}
       {path === "wallet" && (
-        <div className="grid grid-cols-2 gap-7 mb-7">
+        <div className="grid xl:grid-cols-2 grid-cols-1 gap-7 mb-7">
           <WalletTransPanel />
           <WalletTransGraph />
         </div>
