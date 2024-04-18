@@ -4,6 +4,7 @@ import BandwidthChart from "./BandwidthChart";
 import FileTypeChart from "./FileTypeChart";
 import ActivityChart from "./ActivityChart";
 
+
 function StatsPageContent() {
   return (
     <div className="size-full overflow-y-auto p-7">
