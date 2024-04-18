@@ -20,7 +20,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/market" element={<MarketPage />} />
-            <Route path="/wallet" element={<WalletPage />} />
+            <Route path="/wallet" element={<WalletPage path="wallet"/>} />
+            <Route path="/wallet/transactions" element={<WalletPage path="transactions"/>} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </Router>
