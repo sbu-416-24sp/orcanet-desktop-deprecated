@@ -82,8 +82,14 @@ function showSendAlert(
   amount: string | undefined,
   receiverId: string | undefined,
   reason: string | undefined,
-  send: () => void
+  update: () => void
 ) {
+  async function send() {
+    
+
+    // alert(`Sending ${amount} ORC to ${receiverId} with reason: ${reason}`);
+  }
+  
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -91,7 +97,7 @@ function showSendAlert(
           className="mt-7 bg-indigo-500 text-white px-7"
           form="send-form"
           type="submit"
-          onClick={send}
+          onClick={update}
         >
           Send
         </Button>
@@ -144,7 +150,7 @@ function SendForm() {
     { title: "Reason" },
   ];
 
-  async function send() {
+  async function update() {
     setAmount((document.getElementById("amount") as HTMLInputElement).value);
     setReceiverId(
       (document.getElementById("receiver-id") as HTMLInputElement).value
@@ -172,7 +178,7 @@ function SendForm() {
           />
         ))}
       </div>
-      {showSendAlert(amount, receiverId, reason, send)}
+      {showSendAlert(amount, receiverId, reason, update)}
       {/* <Button
         className="mt-7 bg-indigo-500 text-white px-7"
         form="send-form"
