@@ -7,7 +7,9 @@ import TransactionTable from "./TransactionTable";
 function WalletPageContent({ path }: { path: string }) {
   return (
     <div
-      className={`size-full ${path === "wallet" ? "p-10" : ""} overflow-y-auto`}
+      className={`size-full ${
+        path === "wallet" ? "p-10" : "bg-white"
+      } overflow-y-auto`}
     >
       {path === "wallet" && <WalletInfoCards />}
       {path === "wallet" && (
@@ -23,10 +25,7 @@ function WalletPageContent({ path }: { path: string }) {
 
 const WalletPage = ({ path }: { path: string }) => {
   return (
-    <div
-      id="wallet-page"
-      className="size-full flex flex-col text-black bg-white"
-    >
+    <div id="wallet-page" className="size-full flex flex-col text-black">
       {/* <PageHeader pageName="Wallet" /> */}
       <WalletPageContent path={path} />
     </div>
