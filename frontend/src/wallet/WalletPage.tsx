@@ -23,7 +23,7 @@ function WalletPageContent({ path }: { path: string }) {
 
 const WalletPage = ({ path }: { path: string }) => {
   return (
-    <div id="wallet-page" className="size-full flex flex-col">
+    <div id="wallet-page" className="size-full flex flex-col text-black">
       {/* <PageHeader pageName="Wallet" /> */}
       <WalletPageContent path={path} />
     </div>

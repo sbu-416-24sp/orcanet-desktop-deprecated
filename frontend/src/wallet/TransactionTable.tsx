@@ -149,7 +149,7 @@ export const columns = [
     cell: ({ row }: { row: any }) => {
       return (
         <div>
-          <div className="font-md">{row.getValue("id")}</div>
+          <div className="font-md text-black">{row.getValue("id")}</div>
           {row.original.reason && (
             <div className="text-gray-500">Reason: {row.original.reason}</div>
           )}
