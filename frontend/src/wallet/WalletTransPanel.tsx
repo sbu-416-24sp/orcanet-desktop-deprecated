@@ -102,21 +102,21 @@ function showSendAlert(
           <AlertDialogDescription>
             This action cannot be undone. Check the following transaction
             details:
-            <table className="ms-8">
+            <table className="ms-">
               <tr>
-                <td className="px-3">
+                <td className="pe-3">
                   <strong>Amount: </strong>
                 </td>
                 <td>{amount}</td>
               </tr>
               <tr>
-                <td className="px-3">
+                <td className="pe-3">
                   <strong>Receiver ID: </strong>
                 </td>
                 <td>{receiverId}</td>
               </tr>
               <tr>
-                <td className="px-3">
+                <td className="pe-3">
                   <strong>Reason: </strong>
                 </td>
                 <td>{reason}</td>
@@ -126,7 +126,7 @@ function showSendAlert(
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Send</AlertDialogAction>
+          <AlertDialogAction onClick={send}>Send</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
