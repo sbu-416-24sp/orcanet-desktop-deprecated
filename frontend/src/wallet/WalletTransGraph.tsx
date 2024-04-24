@@ -4,7 +4,7 @@ import { ApexOptions } from "apexcharts";
 export default function WalletTransGraph() {
   const series = [
     {
-      name: "Revenue",
+      name: "Earning",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 100],
     },
     {
@@ -38,6 +38,7 @@ export default function WalletTransGraph() {
     dataLabels: {
       enabled: false,
     },
+    colors: ["#5eead4", "#FDA4AF"],
   };
 
   return (
