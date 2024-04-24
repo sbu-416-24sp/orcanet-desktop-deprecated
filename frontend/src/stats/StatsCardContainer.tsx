@@ -13,7 +13,7 @@ interface StatsCardProps {
 function CardInfo({ title, value, percent, textColor, traffic }: StatsCardProps) {
   return (
     <div className="flex flex-col gap-3">
-      <h1>{title}</h1>
+      <h1 className="text-nowrap">{title}</h1>
       <p className="text-3xl font-bold text-nowrap">
         {value} <span className="text-sm">{traffic ? "Kb/s" : "Files"}</span>
       </p>
@@ -92,7 +92,7 @@ export default function StatsCardContainer() {
   ];
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-7 col-span-2 font-semibold">
+    <div className="grid grid-cols-2 grid-rows-2 gap-7 xl:col-span-2 font-semibold">
       {cardInfo.map((card) => (
         <StatsCard key={card.title} {...card} />
       ))}
