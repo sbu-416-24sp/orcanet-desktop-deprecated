@@ -1,21 +1,6 @@
 import { CircleDollarSign, Zap, HandCoins, Cpu } from "lucide-react";
 import MiningDevices from "./MiningDevices";
-import { useState } from "react";
-
-const MiningPage = () => {
-  async function copyIDToClipboard(e: React.MouseEvent<HTMLParagraphElement>) {
-    await navigator.clipboard.writeText(e.currentTarget.innerText);
-  }
-
-  function MiningPageHeader() {
-    return (
-      <div className="bg-white w-full py-5 px-7 flex justify-between items-center drop-shadow-md">
-        <div className="flex items-center gap-2">
-          <h1 className="font-bold text-xl">Mining</h1>
-        </div>
-      </div>
-    );
-  }
+import PageHeader from "../header/PageHeader";
 
   function MiningDashBoard() {
     return (
@@ -71,9 +56,10 @@ const MiningPage = () => {
     );
   }
 
+const MiningPage = () => {
   return (
     <div id="mining-page" className="flex flex-col grow size-full text-black">
-      <MiningPageHeader />
+      <PageHeader pageName="Mining" />
       <div className="size-full px-10 py-7 overflow-y-auto">
         <MiningDashBoard />
         <MiningDevices />
