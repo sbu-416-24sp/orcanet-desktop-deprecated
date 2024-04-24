@@ -20,13 +20,13 @@ export default function WalletInfoCards() {
       icon: <TrendingUp />,
       title: "Monthly Earning",
       text: "100.00 ORC",
-      iconStyle: "bg-teal-200",
+      iconStyle: "bg-teal-300",
     },
     {
       icon: <TrendingDown />,
       title: "Monthly Spending",
       text: "0.00 ORC",
-      iconStyle: "bg-rose-200",
+      iconStyle: "bg-rose-300",
     },
   ];
 
