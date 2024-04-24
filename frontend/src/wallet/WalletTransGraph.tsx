@@ -1,10 +1,50 @@
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { displayControllerProps } from "./WalletTransPanel";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+export function DisplayMenu({ display, setDisplay }: displayControllerProps) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">{display}</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Display</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={display} onValueChange={setDisplay}>
+          <DropdownMenuRadioItem value="Weekly">Weekly</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Monthly">Monthly</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Yearly">Yearly</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+function ChartHeader({ display, setDisplay }: displayControllerProps) {
+  return (
+    <div className="flex justify-between">
+      <h3 className="text-stone-900 text-xl font-bold">Revenue</h3>
+      <DisplayMenu display={display} setDisplay={setDisplay} />
+    </div>
+  );
+}
 
 export default function WalletTransGraph() {
   const series = [
     {
-      name: "Revenue",
+      name: "Earning",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 100],
     },
     {
@@ -16,6 +56,9 @@ export default function WalletTransGraph() {
   const options: ApexOptions = {
     chart: {
       id: "basic-bar",
+      toolbar: {
+        show: false,
+      },
     },
     xaxis: {
       categories: [
@@ -38,19 +81,20 @@ export default function WalletTransGraph() {
     dataLabels: {
       enabled: false,
     },
+    colors: ["#5eead4", "#FDA4AF"],
   };
+
+  const [display, setDisplay] = useState("Weekly");
 
   return (
     <div className="bg-white p-5 rounded-lg">
-      <h3 className="text-stone-900 text-xl font-bold">Revenue</h3>
-      <div>
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="bar"
-          height={300}
-        />
-      </div>
+      <ChartHeader display={display} setDisplay={setDisplay} />
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={300}
+      />
     </div>
   );
 }
