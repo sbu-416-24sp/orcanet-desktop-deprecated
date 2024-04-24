@@ -13,9 +13,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { title } from "process";
 
-interface displayControllerProps {
+export interface displayControllerProps {
   display: string;
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
   text?: string;
