@@ -44,7 +44,7 @@ const MiningPage = () => {
   return (
     <div id="mining-page" className="flex flex-col grow size-full text-black">
       <PageHeader pageName="Mining" />
-      <div className="size-full px-10 py-7 overflow-y-auto">
+      <div className="size-full p-10 overflow-y-auto">
         <MiningDashBoard />
         <MiningDevices />
       </div>
