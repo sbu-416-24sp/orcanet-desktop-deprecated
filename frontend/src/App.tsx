@@ -23,7 +23,8 @@ function App() {
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/peer" element={<PeerPage />} />
             <Route path="/market" element={<MarketPage />} />
-            <Route path="/wallet" element={<WalletPage />} />
+            <Route path="/wallet" element={<WalletPage path="wallet"/>} />
+            <Route path="/wallet/transactions" element={<WalletPage path="transactions"/>} />
             <Route path="/mining" element={<MiningPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
