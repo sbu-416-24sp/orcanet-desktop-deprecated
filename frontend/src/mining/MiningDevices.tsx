@@ -16,8 +16,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { ChevronsRight } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
 import { Switch } from "@/components/ui/switch";
 
 export let DevicesData = [
@@ -204,19 +202,8 @@ export const columns = [
 ];
 
 export default function MiningDevices() {
-  const { page } = useParams();
-
   return (
     <div className="rounded-md bg-white p-5">
-      <div className="flex justify-between font-bold mb-2">
-        <h3 className="text-stone-900 text-xl">Devices</h3>
-        {page !== "transactions" && (
-          <div className=" flex gap-2 text-sm items-center hover:cursor-pointer">
-            <h3>All</h3>
-            <Switch />
-          </div>
-        )}
-      </div>
       <DataTable columns={columns} data={DevicesData} />
     </div>
   );

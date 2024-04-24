@@ -7,6 +7,7 @@ interface InfoCardProps {
   icon: JSX.Element;
   title: string;
   text: string;
+  extraInfo?: JSX.Element | JSX.Element[];
   cardStyle?: string;
   iconStyle?: string;
 }
@@ -43,6 +44,7 @@ function InfoCard({
   icon,
   title,
   text,
+  extraInfo,
   cardStyle = "bg-white",
   iconStyle = "bg-white",
 }: InfoCardProps) {
@@ -53,6 +55,7 @@ function InfoCard({
       <div className="min-w-1.5">
         <h1 className="text-lg mb-3 font-bold">{title}</h1>
         <TextContainer isId={title === "Wallet ID"} text={text} />
+        {extraInfo}
       </div>
       <IconContainer icon={icon} iconStyle={iconStyle} />
     </div>
@@ -72,6 +75,7 @@ export default function InfoCardContainer({
           icon={cardInfo.icon}
           title={cardInfo.title}
           text={cardInfo.text}
+          extraInfo={cardInfo.extraInfo}
           cardStyle={cardInfo.cardStyle}
           iconStyle={cardInfo.iconStyle}
         />
