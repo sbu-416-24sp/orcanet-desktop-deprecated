@@ -13,9 +13,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { title } from "process";
 
-interface displayControllerProps {
+export interface displayControllerProps {
   display: string;
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
   text?: string;
@@ -24,6 +23,14 @@ interface displayControllerProps {
 interface FormInputContainerProps {
   className?: string;
   title: string;
+  inputType: string;
+  setInputValues: React.Dispatch<React.SetStateAction<FormInputType>>;
+}
+
+interface FormInputType {
+  amount: number;
+  receiverId: string;
+  reason: string;
 }
 
 function DisplayButton({ display, setDisplay, text }: displayControllerProps) {
@@ -57,14 +64,27 @@ function TransferPanelHeader({ display, setDisplay }: displayControllerProps) {
   );
 }
 
-function FormInputContainer({ className, title }: FormInputContainerProps) {
+function FormInputContainer({
+  className,
+  title,
+  inputType,
+  setInputValues,
+}: FormInputContainerProps) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      [inputType]: e.target.value,
+    }));
+  }
+
   return (
     <div className={className}>
       <h3 className="text-stone-900 text-md font-semibold">{title}</h3>
       <Input
-        id={title.replaceAll(" ", "-").toLowerCase()}
+        id={inputType}
         type={title === "Amount" ? "number" : "text"}
         className="border border-stone-900 rounded-lg px-3 py-5 w-full mt-2"
+        onChange={onChange}
       />
     </div>
   );
@@ -78,29 +98,13 @@ function QRCodeContainer() {
   );
 }
 
-function showSendAlert(
-  amount: string | undefined,
-  receiverId: string | undefined,
-  reason: string | undefined,
-  update: () => void
-) {
-  async function send() {
-    
+function showSendAlert({ amount, receiverId, reason }: FormInputType) {
+  async function onSubmit() {}
 
-    // alert(`Sending ${amount} ORC to ${receiverId} with reason: ${reason}`);
-  }
-  
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Button
-          className="mt-7 bg-indigo-500 text-white px-7"
-          form="send-form"
-          type="submit"
-          onClick={update}
-        >
-          Send
-        </Button>
+      <AlertDialogTrigger className="mt-11">
+        <Button className="bg-indigo-500 text-white px-7">Send</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -132,7 +136,12 @@ function showSendAlert(
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={send}>Send</AlertDialogAction>
+          <AlertDialogAction
+            className="bg-indigo-500 text-white px-7"
+            onClick={onSubmit}
+          >
+            Send
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -140,45 +149,32 @@ function showSendAlert(
 }
 
 function SendForm() {
-  const [amount, setAmount] = useState<string>();
-  const [receiverId, setReceiverId] = useState<string>();
-  const [reason, setReason] = useState<string>();
+  const [inpuValues, setInputValues] = useState({
+    amount: 0,
+    receiverId: "",
+    reason: "",
+  });
 
   const input = [
-    { className: "col-span-2", title: "Receiver ID" },
-    { title: "Amount" },
-    { title: "Reason" },
+    { className: "col-span-2", title: "Receiver ID", inputType: "receiverId" },
+    { title: "Amount", inputType: "amount" },
+    { title: "Reason", inputType: "reason" },
   ];
-
-  async function update() {
-    setAmount((document.getElementById("amount") as HTMLInputElement).value);
-    setReceiverId(
-      (document.getElementById("receiver-id") as HTMLInputElement).value
-    );
-    setReason((document.getElementById("reason") as HTMLInputElement).value);
-    // const amount = (document.getElementById("amount") as HTMLInputElement)
-    //   .value;
-    // const receiverId = (
-    //   document.getElementById("receiver-id") as HTMLInputElement
-    // ).value;
-    // const reason = (document.getElementById("reason") as HTMLInputElement)
-    //   .value;
-
-    // alert(`Sending ${amount} ORC to ${receiverId} with reason: ${reason}`);
-  }
 
   return (
     <div className="px-3 mt-7">
-      <div className="grid grid-cols-2 grid-rows-2 gap-5">
+      <div className="grid grid-cols-2 grid-rows-2 gap-7">
         {input.map((input) => (
           <FormInputContainer
             key={input.title}
             className={input.className}
             title={input.title}
+            inputType={input.inputType}
+            setInputValues={setInputValues}
           />
         ))}
       </div>
-      {showSendAlert(amount, receiverId, reason, update)}
+      {showSendAlert(inpuValues)}
       {/* <Button
         className="mt-7 bg-indigo-500 text-white px-7"
         form="send-form"
