@@ -1,17 +1,9 @@
-import { DataTable } from "./DataTable";
-import { columns } from "./columns";
-
-import SearchBar from "./SearchBar";
-
-import fakeSeeds from "./fakeSeeds";
-
-import "./market-page.css";
+import PageHeader from "../header/PageHeader";
 
 const MarketPage = () => {
   return (
-    <div id="market-page">
-      <SearchBar />
-      <DataTable columns={columns} data={fakeSeeds} />
+    <div id="market-page" className="size-full">
+      <PageHeader pageName="Market" />
     </div>
   );
 };
